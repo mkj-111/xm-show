@@ -1,6 +1,6 @@
 
 server:
-  port: 8768
+  port: 8868
 
 spring:
   application:
@@ -9,7 +9,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/mkj-111/mkj-config.git
+          uri: https://github.com/mkj-111/mkj-config1.git
           search-paths: /
           username:
           password:
@@ -19,4 +19,4 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8861/eureka
