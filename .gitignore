@@ -16,3 +16,25 @@ gen
 *.iml
 out
 gen
+common/src/
+common/target/classes/
+common/target/generated-sources/
+common/target/generated-test-sources/
+config/src/main/resources/static/
+config/src/main/resources/templates/
+xm-feign/src/main/java/com/xm/controller/
+xm-feign/src/main/java/com/xm/service/
+xm-feign/src/main/resources/static/
+xm-feign/src/main/resources/templates/
+xm-provider/src/main/java/com/xm/controller/
+xm-provider/src/main/java/com/xm/dao/
+xm-provider/src/main/java/com/xm/service/
+xm-provider/src/main/resources/mybatis/mapper/
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
