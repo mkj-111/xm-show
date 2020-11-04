@@ -7,33 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("jump")
 public class jumpcontroller {
 
-    //跳转登录页面
-    @RequestMapping("mi")
-    public String mi(){
-        return "mi";
-    }
-    //跳转首页页面
-    @RequestMapping("guan")
-    public String guan(){
-        return "guan";
-    }
+
+
     //跳转树页面index
     @RequestMapping("index")
     public String index(){
         return "index";
     }
-    //跳转树页面index
-    @RequestMapping("index1")
-    public String index1(){
-        return "index1";
-    }
 
-    @RequestMapping("main")
-    public String main(){
-        return "main_page";
+    //跳转登录页面
+    @RequestMapping("login")
+    public String login(){
+        return "login";
     }
-    @RequestMapping("test")
-    public String test(){
-        return "test";
+    @RequestMapping("toMain")
+    public String toMain(){
+        return "main";
     }
 }
