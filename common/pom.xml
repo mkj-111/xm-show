@@ -21,6 +21,13 @@
     </properties>
 
     <dependencies>
+        <!-- 实体类Date注解 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!--json，amqp-->
         <dependency>
             <groupId>com.alibaba</groupId>
