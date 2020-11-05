@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>淦用户管理页面</title>
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
+    <script type="text/javascript" src="../js/uploadify/jquery.uploadify.min.js"></script>
+</head>
+<body>
+<div class="pull-left">
+    <div class="form-group form-inline">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal"><i
+                    class="fa fa-file-o"></i> 新建
+            </button>
+            <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
+            <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i
+                    class="fa fa-refresh"></i> 刷新
+            </button>
+        </div>
+    </div>
+</div>
+<div class="box-tools pull-right">
+    <div class="has-feedback">
+        名称：<input id="name">
+        <button class="btn btn-default" onclick="javascript:cha()">查询</button>
+
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h3 id="myModalLabel">品牌编辑</h3>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="ff">
+                    <input type="hidden" name="id" id="bid">
+                    <table class="table table-bordered table-striped" width="800px">
+                        <tr>
+                            <td>产品名称</td>
+                            <td><input class="form-control" placeholder="产品名称" name="goodsName" id="qname"></td>
+
+                        </tr>
+                            <tr>
+                                <td>颜色</td>
+                                <td><select name="goodsColorId" id="skinSelect">
+                                    <option value="0">请选择</option>
+                                    <option value="1">陶瓷黑</option>
+                                    <option value="2">透明版</option>
+                                    <option value="3">亮银版</option>
+                                    <option value="4">月幕白</option>
+                                    <option value="5">极夜黑</option>
+                                    <option value="6">薄荷绿</option>
+                                </select></td>
+                            </tr>
+                        <tr>
+                            <td>分类</td>
+                            <td><select name="goodsTypeId" id="leixing">
+                                <option value="0">请选择</option>
+                                <option value="1">手机  电话卡</option>
+                                <option value="2">电视  盒子</option>
+                                <option value="3">笔记本  显示器</option>
+                                <option value="4">家电  插线板</option>
+                                <option value="5">出行  穿戴</option>
+                                <option value="6">智能  路由器</option>
+                                <option value="7">电源  配件</option>
+                                <option value="8">健康  儿童</option>
+                                <option value="9">耳机  音箱</option>
+                                <option value="10">生活  箱包</option>
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td>数量</td>
+                            <td><input class="form-control" placeholder="数量" name="goodsNum" id="quantity"></td>
+                        </tr>
+                      <tr>
+                            <td>图片</td>
+                            <td><img id="add_img" width="100px" height="100px"/>
+                                <input type="file" id="uploadImg"/>
+                                <input id="hideImg" name="goodsImg"/><br>
+                                <div id="fileQueue"></div></td>
+                        </tr>
+
+                        <!--<tr>
+                              <td>时间</td>
+                              <td><input  type="date" placeholder="时间" name="orderTime" id="memo">
+                              </td>
+                          </tr>-->
+                        <tr>
+                            <td>状态</td>
+                            <td>  <input type="radio" name="goodsStatus" value="1" >在售
+                                <input type="radio" name="goodsStatus" value="2" >下架
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" onclick="javascript:add()">保存
+                </button>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table" id="myTable"></table>
+</body>
+<script type="text/javascript">
+    $(function () {
+        initTable()
+    })
+
+    function cha() {
+        $("#myTable").bootstrapTable("refresh", {
+            query: {
+                meetingName: $("#name").val(),
+            }
+        })
+    }
+
+    function initTable() {
+        $("#myTable").bootstrapTable({
+            url: "/goods/find",
+            columns: [
+                {checkbox: true},
+                {field: 'id', title: '产品编号', align: 'center', width: 150},
+                {field: 'info', title: '产品名称', align: 'center', width: 150,formatter:function(value, rows, index) {
+                      var str="";
+                         str3=rows.goodsName;
+                         str1=rows.versionName;
+                         str2=rows.colorName;
+                         str+=str3+str2+str1;
+                    return str;
+                    }},
+                {field: 'goodsImg', title: '浏览', align: 'center', width: 150,formatter:function(value, rows, index) {
+                        return "<img style='width:50px;height:50px' src='/upload/"+value+"'>";
+                    }},
+                {field: 'goodsPrice', title: '产品现价', align: 'center', width: 150},
+                {field: 'text', title: '分类', align: 'center', width: 150},
+                {field: 'goodsNum', title: '数量', align: 'center', width: 150},
+                {field: 'goodsDate', title: '添加日期', align: 'center', width: 150},
+                {field: 'goodsStatus', title: '状态', align: 'center', width: 150,formatter:function(value, rows, index) {
+                        var str = "";
+                        if (value == 1) {
+                            str += "在售";
+                        }
+                        if (value == 2) {
+                            str += "下架";
+                        }
+                        return str;
+                    }},
+                {field: 'tool', title: '操作', align: 'center', width: 150,
+                    formatter: function (value, rows, index) {
+                        var str = "";
+                        str += "<a href='javascript:deletePatientById(" + rows.id + ")'>删除&nbsp;&nbsp;</a>";
+                        str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' data-target='#editModal' onclick='javascript:xiugai(" + rows.id + ")'>修改</button>";
+                        return str;
+                    }
+                },
+            ],
+            pagination: true,
+            pageSize: 10,
+            pageList: [10, 20, 30],
+        });
+    }
+
+    function deletePatientById(id) {
+        $.ajax({
+            url: "/goods/delete",
+            data: {id: id},
+            type: "post",
+            success: function () {
+                $("#myTable").bootstrapTable("refresh");
+            }
+        })
+    }
+
+    function xiugai(id) {
+        $.ajax({
+            url: "/goods/huixian",
+            type: "post",
+            data: {id: id},
+            success: function (data) {
+                console.log(data)
+                $("#bid").val(data.id);
+                $("#qname").val(data.goodsName);
+                $("#skinSelect").val(data.goodsColorId)
+                $("#leixing").val(data.goodsTypeId)
+
+                $("#quantity").val(data.goodsNum);
+                if(data.goodsStatus == 1){
+                    $("input[type=radio][name='goodsStatus'][value='1']").attr("checked",'checked');
+                } else if(data.goodsStatus == 2){
+                    $("input[type=radio][name='goodsStatus'][value='2']").attr("checked",'checked');
+                }
+
+            }
+
+        })
+    }
+
+    function add() {
+        $.ajax({
+            url: "/goods/add",
+            type: "post",
+            data: $("#ff").serialize(),
+            success: function () {
+                alert("成功")
+                $("#myTable").bootstrapTable("refresh");
+
+            }
+        })
+    }
+    $("#uploadImg").uploadify({
+        'swf': '../js/uploadify/uploadify.swf',
+        'uploader': '../goods/tu',
+        'queueID': 'fileQueue',
+        'fileObjName' : 'imgfile',
+        'buttonText': '上传头像',
+        'auto': true,
+        'multi': true,
+        'removeCompleted': true,
+        'fileExt': '*.jpg;*.gif;*.png',
+        'cancelImg': '../js/uploadify/uploadify-cancel.png',
+        'removeTimeout' : 1,
+        'uploadLimit':  -1,
+        'fileTypeExts': '*.jpg;*.png',
+        'onUploadSuccess':function(file,data,response){
+            var imgurl = "http://<%= request.getServerName()%>:<%=request.getServerPort()%>../upload/"+eval(data);
+            $("#add_img").attr("src",imgurl);
+            $('#hideImg').val(eval(data));
+        }
+    });
+</script>
+</html>

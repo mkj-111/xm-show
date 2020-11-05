@@ -20,8 +20,19 @@ public class jumpcontroller {
     public String login(){
         return "login";
     }
+    //跳转首页面
     @RequestMapping("toMain")
     public String toMain(){
         return "main";
+    }
+    //跳转产品管理页面
+    @RequestMapping("goods")
+    public String goods(){
+        return "admin/Goods";
+    }
+    //跳转产品管理页面
+    @RequestMapping("text")
+    public String text(){
+        return "text";
     }
 }

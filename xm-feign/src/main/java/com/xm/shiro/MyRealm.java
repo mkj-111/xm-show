@@ -46,8 +46,8 @@ public class MyRealm extends AuthorizingRealm {
         // 3. 如果用户对象为null，用户名不存在, 则返回账号不存在异常
         if(user == null){
             // 不知道账号异常 （账号不存在）
-          /*  throw new UnknownAccountException();*/
-            return null;
+            throw new UnknownAccountException();
+
         }
         // 获取盐值
         ByteSource saltByte = ByteSource.Util.bytes(user.getSalt());
