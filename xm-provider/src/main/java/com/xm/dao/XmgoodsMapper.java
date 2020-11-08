@@ -18,7 +18,7 @@ public interface XmgoodsMapper {
 
     int updateByPrimaryKey(xmgoods po);
 
-    List<xmgoods> find();
+    List<xmgoods> find(xmgoods goods);
 
     xmgoods select(Integer id);
 }

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-@FeignClient("xmprovider")
+@FeignClient(value="xmprovider")
 public interface GoodsService {
     @RequestMapping("find")
-    public List<xmgoods> find();
+    public List<xmgoods> find(@RequestBody xmgoods goods);
 
     @RequestMapping("delete")
     public void delete(@RequestParam Integer id);

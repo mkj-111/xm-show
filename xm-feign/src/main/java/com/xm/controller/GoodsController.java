@@ -22,8 +22,8 @@ public class GoodsController {
 
 @RequestMapping("find")
 @ResponseBody
-    public List<xmgoods>find(){
-    return goodsService.find();
+    public List<xmgoods>find(xmgoods goods){
+    return goodsService.find(goods);
 }
     @RequestMapping("delete")
     @ResponseBody

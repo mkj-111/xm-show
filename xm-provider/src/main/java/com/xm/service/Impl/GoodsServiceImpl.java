@@ -13,9 +13,10 @@ public class GoodsServiceImpl implements GoodsService {
     private XmgoodsMapper xmgoodsMapper;
 
     @Override
-    public List<xmgoods> find() {
+    public List<xmgoods> find(xmgoods goods) {
 
-        return xmgoodsMapper.find();
+        return xmgoodsMapper.find(goods);
+
     }
 
     @Override

@@ -1,9 +1,16 @@
 package com.xm.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
+import java.util.Date;
 
 @Data
-public class xmorder {
+public class xmorder implements Serializable {
+
+    private static final long serialVersionUID = -6871805105087384107L;
     private Integer orderId;
 
     private Integer orderNumber;
@@ -21,6 +28,13 @@ public class xmorder {
     private Integer userId;
 
     private String orderInfo;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date orderDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date deliverytime;
+    private String Orderstatusname;
 
     public Integer getOrderId() {
         return orderId;
@@ -67,7 +81,7 @@ public class xmorder {
     }
 
     public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName == null ? null : goodsName.trim();
+        this.goodsName = goodsName;
     }
 
     public Integer getGoodsNum() {
@@ -91,6 +105,30 @@ public class xmorder {
     }
 
     public void setOrderInfo(String orderInfo) {
-        this.orderInfo = orderInfo == null ? null : orderInfo.trim();
+        this.orderInfo = orderInfo;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public Date getDeliverytime() {
+        return deliverytime;
+    }
+
+    public void setDeliverytime(Date deliverytime) {
+        this.deliverytime = deliverytime;
+    }
+
+    public String getOrderstatusname() {
+        return Orderstatusname;
+    }
+
+    public void setOrderstatusname(String orderstatusname) {
+        Orderstatusname = orderstatusname;
     }
 }

@@ -25,8 +25,16 @@
        select * from xm_goods q LEFT JOIN
  xm_type_tree w on q.goods_type_id=w.id LEFT JOIN
  xm_color e on q.goods_color_id=e.color_id LEFT JOIN
- xm_versions r on e.color_id=r.color_id
+ xm_versions r on e.color_id=r.color_id <include refid="sqlde"></include>
   </select>
+  
+  <sql id="sqlde">
+     <where>
+           <if test="goodsName!=null and goodsName!=''">
+             and q.goods_name like "%${goodsName}%"
+           </if>
+         </where>
+  </sql>
   <sql id="Base_Column_List" >
     id, goods_name, goods_status, goods_caption, goods_type_id, goods_img, goods_color_id, 
     goods_img_all, goods_info, goods_num, goods_date
@@ -42,13 +50,13 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xm.entity.xmgoods" >
-    insert into xm_goods (id, goods_name, goods_status, 
-      goods_caption, goods_type_id, goods_img, 
-      goods_color_id, goods_img_all, goods_info, 
+    insert into xm_goods (id, goods_name, goods_status,
+      goods_caption, goods_type_id, goods_img,
+      goods_color_id, goods_img_all, goods_info,
       goods_num, goods_date)
-    values (#{id,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsStatus,jdbcType=VARCHAR}, 
-      #{goodsCaption,jdbcType=VARCHAR}, #{goodsTypeId,jdbcType=INTEGER}, #{goodsImg,jdbcType=VARCHAR}, 
-      #{goodsColorId,jdbcType=VARCHAR}, #{goodsImgAll,jdbcType=VARCHAR}, #{goodsInfo,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsStatus,jdbcType=VARCHAR},
+      #{goodsCaption,jdbcType=VARCHAR}, #{goodsTypeId,jdbcType=INTEGER}, #{goodsImg,jdbcType=VARCHAR},
+      #{goodsColorId,jdbcType=VARCHAR}, #{goodsImgAll,jdbcType=VARCHAR}, #{goodsInfo,jdbcType=VARCHAR},
       #{goodsNum,jdbcType=INTEGER}, now())
   </insert>
   <insert id="insertSelective" parameterType="com.xm.entity.xmgoods" >
@@ -174,4 +182,6 @@
       goods_date = #{goodsDate,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

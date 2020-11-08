@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>淦用户管理页面</title>
+    <meta name="keywords" content="keyword1,keyword2,keyword3"></meta>
+
+    <meta name="description" content="this is my page"></meta>
+
+    <meta name="content-type" content="text/html; charset=UTF-8"></meta>
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap-table.min.css">
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
 
@@ -85,10 +90,10 @@
                         </tr>
                       <tr>
                             <td>图片</td>
-                            <td><img id="add_img" width="100px" height="100px"/>
-                                <input type="file" id="uploadImg"/>
-                                <input id="hideImg" name="goodsImg"/><br>
-                                <div id="fileQueue"></div></td>
+                            <td>图片：<input type="file" name="goodsImg" /><br/>
+
+                                <input type="submit" value="上传" />
+                            </td>
                         </tr>
 
                         <!--<tr>
@@ -124,7 +129,7 @@
     function cha() {
         $("#myTable").bootstrapTable("refresh", {
             query: {
-                meetingName: $("#name").val(),
+                goodsName:$("#name").val(),
             }
         })
     }

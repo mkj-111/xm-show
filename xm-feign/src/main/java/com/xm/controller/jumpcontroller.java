@@ -30,6 +30,11 @@ public class jumpcontroller {
     public String goods(){
         return "admin/Goods";
     }
+    //跳转订单管理页面
+    @RequestMapping("order")
+    public String order(){
+        return "admin/Order";
+    }
     //跳转产品管理页面
     @RequestMapping("text")
     public String text(){

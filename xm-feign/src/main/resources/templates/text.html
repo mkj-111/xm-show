@@ -1,127 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Bootstrap-fileinput 实现图片上传</title>
+    <title></title>
 
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bootstrap-fileinput/5.0.1/css/fileinput.min.css" rel="stylesheet">
-
-    <script src="https://cdn.bootcss.com/jquery/2.2.2/jquery.js"></script>
-
-    <!-- 如果你想在上传之前修改图片大小需要加入canvas-to-blob.min.js  它必须在fileinput.min.js之前引入 -->
-    <script src="https://cdn.bootcss.com/javascript-canvas-to-blob/3.14.0/js/canvas-to-blob.js"></script>
-
-    <!-- 如果你想在最初的预览中排序/重新排列需要引入sortable.min.js  它必须在fileinput.min.js之前引入 -->
-    <script src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.1/js/plugins/sortable.min.js"></script>
-
-    <!-- 如果你想在HTML文件预览中净化HTML内容则要引入purify.min.js is  它必须在fileinput.min.js之前引入 -->
-    <script src="https://cdn.bootcss.com/dompurify/1.0.10/purify.min.js"></script>
-
-    <!-- 主要的 fileinput 插件库 -->
-    <script src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.1/js/fileinput.min.js"></script>
-
-    <!-- 如果你想在放大的模态页面中查看文件详细信息需要引入bootstrap.js -->
-    <script src="https://cdn.bootcss.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-    <!-- 可选，如果你需要像font awesome 这样的主题，就像下面的代码一样引入它 -->
-    <script src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.1/js/locales/fa.min.js"></script>
-
-    <!-- 可选，如果你需要转换语言或翻译，就包含这个库 -->
-    <script src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.1/js/locales/zh.min.js"></script>
-
-    <!-- 自定义上传图片JS文件 -->
-    <script src="/static/js/uploadPic.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
+    <!--在客户端保存生成的导出文件-->
+    <script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!--以XLSX（Excel 2007+ XML格式）格式导出表（SheetJS）-->
+    <script src="https://cdn.bootcss.com/xlsx/0.14.2/xlsx.core.min.js"></script>
+    <!--以PNG格式导出表格-->
+    <!--对于IE支持包括 html2canvas 之前的 es6-promise-->
+    <script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <!--将表导出为PDF文件-->
+    <script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <!--无论期望的格式如何，最后都包含 tableexport.jquery.plugin（不是tableexport）-->
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap/css/fileinput.min.css">
+    <script src="../js/bootstrap/js/fileinput.min.js"></script>
 </head>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-file-excel-o"></i>批量导入
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        批量导入
+                    </h4>
+                </div>
+                <div class="modal-body">
 
+                    <form id="importFile" name="importFile" class="form-horizontal" method="post"
+                          enctype="multipart/form-data">
+                        <div>
+                            <label class="control-label">请选择要导入的excel文件：</label>
+                            <input id="excelFile" name="excelFile" class="file-loading" type="file" multiple accept=".xls,.xlsx">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
 <body>
 
-<input id="fish_file" name="fish_file" type="file" multiple  class="file"  data-show-upload="false" data-show-caption="true">
 
-</body>
-<script>
-    $(function () {
-        fishFileInput("fish_file","/SongshanManagement/animalcontent/addfishPicture.html");
-    $("#btn_insect_add").click(function () {
-        $(".insect").val("") //根据类名移除上一次增昆虫名录时的填写的所有的内容。
-        /**
-         * 以下代码是为了移除 bootstrap fileinput上传插件 上一次选择的文件，当再次打开时，清空上次选择的文件，
-         * 实现的思路是：每次打开模态框时先清楚div中的input 文件上传框，然后再在相应的div中动态添加，文件上传框，并调用初始化的方法。
-         *
-         */
-        /
-        $("#div_insect_file").empty();
-        var element='<input id="insect_file" name="insect_file" type="file" multiple  class="file insect"  data-show-upload="false" data-show-caption="true">';
-        $("#div_insect_file").append(element);
-        insectFileInput("insect_file","/SongshanManagement/animalcontent/addinsectPicture.html");
-        openModal("insectAddDetail");
-    });
 
-    //初始化鱼类名录信息上传的fileinput控件
-    function fishFileInput(ctrlName, uploadUrl) {
-        $("#fish_file").fileinput({
-            language: 'zh', //设置语言
-            uploadUrl: '/SongshanManagement/animalcontent/addFishPicture.html', //上传的地址
-            enctype: 'multipart/form-data',
-            allowedFileExtensions : ['jpg', 'png','bmp','jpeg'],//接收的文件后缀
+<script type="text/javascript">
+    //批量导入excel
+    initUpload("excelFile","/admin/excelInput");
+    function initUpload(ctrlName,uploadUrl){
+        var control = $("#"+ctrlName);
+        control.fileinput({
+            language:"zh",//设置语言
+            uploadUrl:uploadUrl,//上传的地址
+            maxFilesNum : 1000,//上传最大的文件数量
+            uploadAsync: true, //默认异步上传
             showUpload: false, //是否显示上传按钮
-            showPreview: true,              //展前预览
-            showCaption: false,//是否显示标题
-            maxFileSize : 10000,//上传文件最大的尺寸
-            maxFilesNum : 10,//
-            dropZoneEnabled: false,//是否显示拖拽区域
+            showRemove : true, //显示移除按钮
+            showPreview : true, //是否显示预览
+            autoReplace:false, //再次选中文件时,不会替换掉当前文件
+            showCaption: true,//是否显示标题
             browseClass: "btn btn-primary", //按钮样式
-            uploadAsync: false,
-            layoutTemplates :{
-                // actionDelete:'', //去除上传预览的缩略图中的删除图标
-                actionUpload:'',//去除上传预览缩略图中的上传图片；
-                actionZoom:''   //去除上传预览缩略图中的查看详情预览的缩略图标。
-            },
-            uploadExtraData:function (previewId, index) {
-                //向后台传递id作为额外参数，是后台可以根据id修改对应的图片地址。
-                var obj = {};
-                obj.id = fishId;
-                return obj;
-            }
-        }).on("filebatchuploadsuccess", function(event, data) {
-            if(data.response){
-                closeModal('fishAddDetail') 关闭模态框。
-            $("#bootstraptable_fishcontent").bootstrapTable("refresh");
-            }
-        }).on('fileerror', function(event, data, msg) {  //一个文件上传失败
-            console.log('文件上传失败！'+msg);
+            maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+            enctype: 'multipart/form-data',
+            validateInitialCount:true,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
         });
     }
-    //新增鱼类名录模态框的提交按钮点击事件。
-    $("#btn_add_fish").click(function () {
-        var picturename="";//获取上传的文件的后缀名，如果不是jpg,或者png的话不出发上传，弹出提示，表单里面的其他内容也不上传。
-        picturename=$("#fish_file").val().substring($("#fish_file").val().indexOf('.'),$("#fish_file").val().length).toUpperCase();
-        /*当上传的文件的格式是.png .jpg .PNG .JPG时 先将表单内的除图片以外的东西提交到后天，然后在触发插件，将图片上传，保存。
-         */
-        if (picturename ==".JPG"  || picturename ==".PNG" || picturename =="" || picturename==".BMP"|| picturename==".JPEG") {
-            $.ajax({
-                type: 'post',
-                url: '/SongshanManagement/animalcontent/addfishcontent.html',
-                data: $("#form_addfishContent").serialize(),
-                success: function (data) {
-                    fishId = data;
-                    //不上传图片时，不触发bootstrap 上传插件的初始化方法。仅将表单里面的（除图片以外的）内容提交，
-                    if ($("#fish_file").val() != "") {
-                        $('#fish_file').fileinput('upload'); //触发插件开始上传。
-                    }
-                    else {
-                        closeModal('fishAddDetail');
-                        $("#bootstraptable_fishcontent").bootstrapTable("refresh");
-                    }
 
-                }
-            });
-        }else {
-            alert("只能上传.jpg，.png，.PNG,.JPG,bmp,jpeg格式的图片");
-            return false;
+    $("#excelFile").on("fileuploaded",function(exevt,data,previewId,index){
+        if(data.response.success == true){
+            alert("导入成功");
+            $("#excelFile").fileinput("clear");
+            $("#excelFile").fileinput("reset");
+            $("#excelFile").fileinput("refresh");
+            $("#excelFile").fileinput("enable");
+            $(".close").click();
+            $("#reload").click();
+            $('.close.fileinput-remove').hide();
+        }else{
+            alert("导入失败");
+            $("#excelFile").fileinput("clear");
+            $("#excelFile").fileinput("reset");
+            $("#excelFile").fileinput("refresh");
+            $("#excelFile").fileinput("enable");
+            $('.close.fileinput-remove').hide();
         }
-
     });
 </script>
 
+</body>
 </html>

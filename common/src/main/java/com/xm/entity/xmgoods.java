@@ -34,6 +34,9 @@ public class xmgoods {
     private String colorName;
 
     private String versionName;
+    private String pianhaoid;
+
+
 
     public Integer getId() {
         return id;

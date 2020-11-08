@@ -2,28 +2,27 @@ package com.xm.controller;
 
 import com.xm.entity.xmgoods;
 import com.xm.service.GoodsService;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
-
 public class GoodsController {
 
 @Resource
     private com.xm.service.GoodsService goodsService;
 
-@RequestMapping("find")
-    public List<xmgoods>find(){
-    return goodsService.find();
+   @RequestMapping("find")
+    public List<xmgoods>find(@RequestBody xmgoods goods){
+    return goodsService.find(goods);
 }
     @RequestMapping("delete")
     public void delete(@RequestParam Integer id) {
-        goodsService.delete(id);
+
+    goodsService.delete(id);
     }
 
     @RequestMapping("add")
