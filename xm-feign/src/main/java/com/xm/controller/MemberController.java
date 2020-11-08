@@ -21,7 +21,7 @@ public class MemberController {
      * 查询
      * @return
      */
-    @RequestMapping("select")
+    @RequestMapping("selectyyb")
     @ResponseBody
     public List<Member> find(Member member){
         return memberService.find(member);
@@ -31,7 +31,7 @@ public class MemberController {
      * 删除
      * @param id
      */
-    @RequestMapping("getDelete")
+    @RequestMapping("getDeleteyyb")
     @ResponseBody
     public void getDelete(Integer id){
         memberService.getDelete(id);
@@ -41,7 +41,7 @@ public class MemberController {
      * 新增
      * @param member
      */
-    @RequestMapping("add")
+    @RequestMapping("addyyb")
     @ResponseBody
     public void add(Member member){
         memberService.add(member);
@@ -52,7 +52,7 @@ public class MemberController {
      * @param id
      * @return
      */
-    @RequestMapping("getUpdate")
+    @RequestMapping("getUpdateyyb")
     @ResponseBody
     public Member getUpdate(Integer id){
         return memberService.getUpdate(id);

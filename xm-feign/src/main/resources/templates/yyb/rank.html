@@ -45,7 +45,7 @@
     })
     function select(){
         $("#rank_table").bootstrapTable({
-            url:"/find",
+            url:"/findyyb",
             columns: [
                 {field: 'chec', checkbox: true},
                 {field: 'username', title: '用户名', align: 'center', width: 150},
@@ -73,7 +73,7 @@
     }
     function getUpgrade(id){
         $.ajax({
-            url:"/upgrade",
+            url:"/upgradeyyb",
             type:"post",
             data:{id:id},
             success:function(){
