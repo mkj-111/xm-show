@@ -20,10 +20,12 @@ public class jumpcontroller {
     public String login(){
         return "login";
     }
+    //跳转首页面
     @RequestMapping("toMain")
     public String toMain(){
         return "main";
     }
+<<<<<<< HEAD
 
     /*于英彬*/
     //跳转会员列表页面
@@ -37,4 +39,21 @@ public class jumpcontroller {
         return "yyb/rank";
     }
     /*于英彬*/
+=======
+    //跳转产品管理页面
+    @RequestMapping("goods")
+    public String goods(){
+        return "admin/Goods";
+    }
+    //跳转订单管理页面
+    @RequestMapping("order")
+    public String order(){
+        return "admin/Order";
+    }
+    //跳转产品管理页面
+    @RequestMapping("text")
+    public String text(){
+        return "text";
+    }
+>>>>>>> a2d212edb862d5f6c31cabacf6bd3ed4993e4cb3
 }

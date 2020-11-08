@@ -56,7 +56,7 @@
     function initTree(){
         $.ajax({
             type:'get',
-            url:'/tree/findtree',
+            url:'/user/queryTree',
             dataType:'json',
             success:function(data){
                 $('#myTree').treeview({
