@@ -146,7 +146,7 @@
     }
     function select(){
         $("#member_table").bootstrapTable({
-            url:"/select",
+            url:"/selectyyb",
             columns: [
                 {field: 'chec', checkbox: true},
                 {field: 'username', title: '用户名', align: 'center', width: 150},
@@ -185,7 +185,7 @@
     }
     function getAdd(){
         $.ajax({
-            url:"/add",
+            url:"/addyyb",
             type:"post",
             data:$("#ff").serialize(),
             success:function(){
@@ -195,7 +195,7 @@
     }
     function getDelete(id){
         $.ajax({
-            url:"/getDelete",
+            url:"/getDeleteyyb",
             type:"post",
             data:{id:id},
             success:function(){
@@ -206,7 +206,7 @@
     function getUpdate(id){
         alert(id)
         $.ajax({
-            url:"/getUpdate",
+            url:"/getUpdateyyb",
             type:"post",
             data:{id:id},
             success:function(data){

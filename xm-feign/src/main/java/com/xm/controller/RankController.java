@@ -21,7 +21,7 @@ public class RankController {
      * 查询
      * @return
      */
-    @RequestMapping("find")
+    @RequestMapping("findyyb")
     @ResponseBody
     public List<Rank> find(){
         return rankService.find();
@@ -31,7 +31,7 @@ public class RankController {
      * 升级
      * @param id
      */
-    @RequestMapping("upgrade")
+    @RequestMapping("upgradeyyb")
     @ResponseBody
     public void upgrade(@RequestParam Integer id){
         rankService.upgrade(id);

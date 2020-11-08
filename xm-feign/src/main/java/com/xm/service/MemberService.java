@@ -11,16 +11,16 @@ import java.util.List;
 @FeignClient(value="xmprovider")
 public interface MemberService {
 
-    @RequestMapping("select")
+    @RequestMapping("selectyyb")
     public List<Member> find(@RequestBody Member member);
 
 
-    @RequestMapping("getDelete")
+    @RequestMapping("getDeleteyyb")
     public void getDelete(@RequestParam Integer id);
 
-    @RequestMapping("add")
+    @RequestMapping("addyyb")
     public void add(@RequestBody Member member);
 
-    @RequestMapping("getUpdate")
+    @RequestMapping("getUpdateyyb")
     public Member getUpdate(@RequestParam Integer id);
 }

@@ -10,9 +10,9 @@ import java.util.List;
 @FeignClient("xmprovider")
 public interface RankService {
 
-    @RequestMapping("rank/find")
+    @RequestMapping("rank/findyyb")
     public List<Rank> find();
 
-    @RequestMapping("rank/upgrade")
+    @RequestMapping("rank/upgradeyyb")
     public void upgrade(@RequestParam Integer id);
 }
