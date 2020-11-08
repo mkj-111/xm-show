@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xm.dao.MemberMapper" >
+  <resultMap id="BaseResultMap" type="com.xm.entity.Member" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="xm_email" property="xmEmail" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="memberRank_id" property="memberrankId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="adddate" property="addDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="userSql">
+    <where>
+      <if test="username!=null and username!= ''">
+        and username like '%${username}%'
+      </if>
+     <if test="staDate!=null and staDate!= ''">
+        and adddate &gt; #{staDate}
+      </if>
+      <if test="endDate!=null and endDate!= ''">
+        and adddate &lt; #{endDate}
+      </if>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, username, name, gender, phone, xm_email, adddate, memberRank_id, address, area_id,
+    status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from xm_member
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="find" resultMap="BaseResultMap">
+    select m.*,r.name rankName from xm_member m left join xm_rank r on m.memberRank_id=r.id <include refid="userSql"></include>
+  </select>
+  <delete id="delete">
+    delete from xm_member where id = #{id}
+  </delete>
+  <insert id="insertSelective" parameterType="com.xm.entity.Member" >
+    insert into xm_member(username,name,gender,phone,xm_email,adddate,memberRank_id,address,area_id,status)
+    values(#{username},#{name},#{gender},#{phone},null,#{addDate},#{memberrankId},#{address},#{areaId},#{status})
+  </insert>
+  <update id="update" parameterType="com.xm.entity.Member">
+    update xm_member set username=#{username},name=#{name},gender=#{gender},phone=#{phone},adddate=#{addDate},memberRank_id=#{memberrankId},address=#{address},area_id=#{areaId},status=#{status} where id=#{id}
+  </update>
+</mapper>

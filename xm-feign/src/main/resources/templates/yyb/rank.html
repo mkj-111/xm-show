@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>等级管理</title>
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
+</head>
+<body>
+<!-- 产品管理(商品管理) (动态面板) -->
+<div id="u3832" class="ax_default" data-label="产品管理(商品管理)" style="left: 0px; width: 840px;">
+    <div id="u3832_state0" class="panel_state" data-label="State1" style="width: 840px;">
+        <div id="u3832_state0_content" class="panel_state_content" style="margin-left: 0px;">
+            <div class="form-group form-inline">
+                <div>
+                    <button type="button" class="btn btn-default" title="所有用户" onclick="javascript:select()"><i class="fa fa-trash-o"></i>所有用户</button>
+                    <button type="button" class="btn btn-default" title="普通用户" onclick="javascript:getSelect(1)"><i class="fa fa-trash-o"></i>普通用户</button>
+                    <button type="button" class="btn btn-default" title="会员1级" onclick="javascript:getSelect(2)"><i class="fa fa-trash-o"></i>会员1级</button>
+                    <button type="button" class="btn btn-default" title="会员2级" onclick="javascript:getSelect(3)"><i class="fa fa-trash-o"></i>会员2级</button>
+                    <button type="button" class="btn btn-default" title="会员3级" onclick="javascript:getSelect(4)"><i class="fa fa-trash-o"></i>会员3级</button>
+                    <button type="button" class="btn btn-default" title="会员4级" onclick="javascript:getSelect(5)"><i class="fa fa-trash-o"></i>会员4级</button>
+                    <button type="button" class="btn btn-default" title="会员5级" onclick="javascript:getSelect(6)"><i class="fa fa-trash-o"></i>会员5级</button>
+                    <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                </div>
+            </div>
+            <!-- 产品2 (动态面板) -->
+            <div id="u3833" class="ax_default" data-label="产品2" style="left: 0px; width: 840px;">
+                <div id="u3833_state0" class="panel_state" data-label="State1" style="height: 780px; width: 840px;">
+                    <div id="u3833_state0_content" class="panel_state_content" style="margin-left: 15px;">
+                        <table id="rank_table"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(function(){
+      select();
+    })
+    function select(){
+        $("#rank_table").bootstrapTable({
+            url:"/find",
+            columns: [
+                {field: 'chec', checkbox: true},
+                {field: 'username', title: '用户名', align: 'center', width: 150},
+                {field: 'name', title: '真实姓名', align: 'center', width: 150},
+                {field: 'gender', title: '性别', align: 'center', width: 150},
+                {field: 'phone', title: '电话', align: 'center', width: 150},
+                {field: 'email', title: '邮箱', align: 'center', width: 150},
+                {field: 'address', title: '地址', align: 'center', width: 150},
+                {field: 'addDate', title: '加入时间', align: 'center', width: 150},
+                {field: 'rankName', title: '等级', align: 'center', width: 150},
+                {field: 'zuo', title: '操作', align: 'center', width: 150,
+                    formatter:function(value,row,index){
+                        var str="<button type='button' class='btn btn-default' title='升级' onclick='javascript:getUpgrade("+row.id+")'><i class='fa fa-trash-o'></i>升级</button>";
+                        if(row.memberrankId>6){
+                            row.memberrankId=1
+                        }
+                        return str;
+                    }
+                },
+            ],
+            pagination:true,
+            pageSize:2,
+            PageList:[2,4,6,8,10]
+        });
+    }
+    function getUpgrade(id){
+        $.ajax({
+            url:"/upgrade",
+            type:"post",
+            data:{id:id},
+            success:function(){
+                $("#rank_table").bootstrapTable("refresh")
+            }
+        })
+    }
+</script>
+</html>

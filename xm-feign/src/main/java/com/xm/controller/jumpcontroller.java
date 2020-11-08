@@ -24,4 +24,17 @@ public class jumpcontroller {
     public String toMain(){
         return "main";
     }
+
+    /*于英彬*/
+    //跳转会员列表页面
+    @RequestMapping("member")
+    public String member(){
+        return "yyb/member";
+    }
+    //跳转会员等级页面
+    @RequestMapping("rank")
+    public String rank(){
+        return "yyb/rank";
+    }
+    /*于英彬*/
 }
