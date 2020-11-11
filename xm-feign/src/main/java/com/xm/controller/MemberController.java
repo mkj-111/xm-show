@@ -1,7 +1,10 @@
 package com.xm.controller;
 
+import com.xm.config.RedisConstant;
 import com.xm.entity.Member;
 import com.xm.service.MemberService;
+import com.xm.utils.RedisUtil;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,10 @@ public class MemberController {
 
     @Resource
     private MemberService memberService;
+    @Resource
+    private RedisTemplate redisTemplate;
+    @Resource
+    private RedisUtil redisUtil;
 
     /**
      * 查询
@@ -24,7 +31,13 @@ public class MemberController {
     @RequestMapping("selectyyb")
     @ResponseBody
     public List<Member> find(Member member){
-        return memberService.find(member);
+        List<Member> memberList= (List<Member>) redisUtil.get(RedisConstant.MEMBER_LIST_KEY);
+        if(memberList==null || memberList.isEmpty()){
+            memberList=memberService.find(member);
+            redisUtil.set(RedisConstant.MEMBER_LIST_KEY,memberList);
+            redisUtil.expire(RedisConstant.MEMBER_LIST_KEY,60);
+        }
+        return memberList;
     }
 
     /**
@@ -34,6 +47,7 @@ public class MemberController {
     @RequestMapping("getDeleteyyb")
     @ResponseBody
     public void getDelete(Integer id){
+        redisUtil.del(RedisConstant.MEMBER_LIST_KEY);
         memberService.getDelete(id);
     }
 
@@ -44,6 +58,7 @@ public class MemberController {
     @RequestMapping("addyyb")
     @ResponseBody
     public void add(Member member){
+        redisUtil.delAllKeys(RedisConstant.MEMBER_LIST_KEY);
         memberService.add(member);
     }
 
@@ -55,6 +70,7 @@ public class MemberController {
     @RequestMapping("getUpdateyyb")
     @ResponseBody
     public Member getUpdate(Integer id){
+        redisUtil.del(RedisConstant.MEMBER_LIST_KEY);
         return memberService.getUpdate(id);
     }
 }

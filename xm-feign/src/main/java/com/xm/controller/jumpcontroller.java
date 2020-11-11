@@ -26,6 +26,7 @@ public class jumpcontroller {
         return "main";
     }
 
+
     /*于英彬*/
     //跳转会员列表页面
     @RequestMapping("member")
@@ -36,6 +37,31 @@ public class jumpcontroller {
     @RequestMapping("rank")
     public String rank(){
         return "yyb/rank";
+    }
+    //跳转售后管理页面
+    @RequestMapping("after")
+    public String after(){
+        return "yyb/after";
+    }
+    //跳转支付方式页面
+    @RequestMapping("payment")
+    public String payment(){
+        return "yyb/payment";
+    }
+    //跳转秒杀页面
+    @RequestMapping("seckill")
+    public String seckill(){
+        return "yyb/seckillGoods";
+    }
+    //跳转首页
+    @RequestMapping("first")
+    public String first(){
+        return "first";
+    }
+    //跳转欢迎页面
+    @RequestMapping("second")
+    public String second(){
+        return "second";
     }
     /*于英彬*/
     //跳转产品管理页面

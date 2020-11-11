@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xm.dao.SeckillGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.xm.entity.SeckillGoods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="small_pic" property="smallPic" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+    <result column="seller_id" property="sellerId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="stock_count" property="stockCount" jdbcType="INTEGER" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="tixingshu" property="tixingshu" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="findSeckill" resultMap="BaseResultMap">
+    select * from xm_seckill_goods
+  </select>
+  <insert id="addSeckill" parameterType="com.xm.entity.SeckillGoods">
+    insert into xm_seckill_goods
+        values(#{id},null,null,#{title},null,#{price},#{costPrice},null,#{createTime},#{checkTime},#{status},#{startTime},#{endTime},#{num},#{stockCount},#{introduction},#{tixingshu})
+  </insert>
+  <delete id="deleteSeckill">
+    delete from xm_seckill_goods where id=#{id}
+  </delete>
+  <select id="updateSeckill" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from xm_seckill_goods where id=#{id}
+  </select>
+  <update id="updateGoods" parameterType="com.xm.entity.SeckillGoods">
+    update xm_seckill_goods sg set
+        sg.title=#{title},sg.small_pic=#{smallPic},sg.price=#{price},sg.cost_price=#{costPrice},sg.create_time=#{createTime},
+        sg.check_time=#{checkTime},sg.status=#{status},sg.start_time=#{startTime},sg.end_time=#{endTime},sg.num=#{num},
+        sg.stock_count=#{stockCount},sg.introduction=#{introduction},sg.tixingshu=#{tixingshu}
+            where sg.id=#{id}
+  </update>
+</mapper>

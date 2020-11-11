@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!-- saved from url=(0117)http://www.pmdaniu.com/storage/53164/1d97e8bef5948e3deb76204e56ed8dba-25820/%E4%BC%9A%E5%91%98%E5%88%97%E8%A1%A8.html -->
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>会员列表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
+    <script src="../js/uploadify/jquery.uploadify.min.js"></script>
+
+</head>
+<body>
+
+<div id="u3832" class="ax_default" data-label="产品管理(商品管理)" style="left: 0px; width: 840px;">
+    <div id="u3832_state0" class="panel_state" data-label="State1" style="width: 840px;">
+        <div id="u3832_state0_content" class="panel_state_content" style="margin-left: 0px;">
+            <div class="box-tools pull-right">
+                <div class="has-feedback">
+                    会员名称：<input id="user">
+                    会员名称：<input id="staDate"> 至 <input id="endDate">
+                    <button class="btn btn-default" onclick="javascript:getSearch()">查询</button>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <div>
+                    <button type="button" class="btn btn-default" title="修改用户" ><i class="fa fa-trash-o"></i>修改用户</button>
+                    <button type="button" class="btn btn-default" title="添加用户" data-toggle="modal" data-target="#editModal"><i class="fa fa-file-o"></i>添加用户</button>
+                    <button type="button" class="btn btn-default" title="关闭用户" ><i class="fa fa-trash-o"></i>关闭用户</button>
+                    <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                </div>
+            </div>
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h3 id="myModalLabel">添加用户</h3>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" id="ff">
+                                <input  name="id" id="mid"> <!--type="hidden"-->
+                                <table class="table table-bordered table-striped" width="800px">
+                                    <tr>
+                                        <td>商品名称</td>
+                                        <td><input class="form-control" placeholder="商品名称" name="title" id="title"></td>
+                                    </tr>
+                                    <!--<tr>
+                                        <td>商品图片</td>
+                                        <td>
+                                            <input class="form-control" placeholder="商品图片" name="smallPic" id="smallPic">
+                                        </td>
+                                    </tr>-->
+                                    <tr>
+                                        <td>原价格</td>
+                                        <td><input class="form-control" placeholder="原价格" name="price" id="price"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>秒杀价格</td>
+                                        <td><input class="form-control" placeholder="秒杀价格" name="costPrice" id="costPrice"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>添加日期</td>
+                                        <td><input class="form-control" placeholder="添加日期" name="createTime" id="createTime"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>审核日期</td>
+                                        <td><input class="form-control" placeholder="审核日期" name="checkTime" id="checkTime"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>审核状态</td>
+                                        <td>
+                                            <select name="status" id="status">
+                                                <option value="-1" selected>--请选择审核状态--</option>
+                                                <option value="1">已审核</option>
+                                                <option value="2">审核中</option>
+                                                <option value="3">未审核</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>开始时间</td>
+                                        <td><input class="form-control" placeholder="开始时间" name="startTime" id="startTime"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>结束时间</td>
+                                        <td><input class="form-control" placeholder="结束时间" name="endTime" id="endTime"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>秒杀商品数</td>
+                                        <td><input class="form-control" placeholder="秒杀商品数" name="num" id="num"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>剩余库存</td>
+                                        <td><input class="form-control" placeholder="剩余库存" name="stockCount" id="stockCount"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>描述</td>
+                                        <td><input class="form-control" placeholder="描述" name="introduction" id="introduction"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>提醒数</td>
+                                        <td><input class="form-control" placeholder="提醒数" name="tixingshu" id="tixingshu"></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" onclick="javascript:getAdd()">保存</button>
+                            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 产品2 (动态面板) -->
+            <div id="u3833" class="ax_default" data-label="产品2" style="left: 0px; width: 840px;">
+                <div id="u3833_state0" class="panel_state" data-label="State1" style="height: 780px; width: 840px;">
+                    <div id="u3833_state0_content" class="panel_state_content" style="margin-left: 15px;">
+                        <table id="after_table"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        select();
+    })
+    function getSearch(){
+        alert($("#user").val());
+        $("#member_table").bootstrapTable("refresh",{
+            query:{
+                username:$("#user").val(),
+                staDate:$("#staDate").val(),
+                endDate:$("#endDate").val(),
+            }
+        })
+    }
+    function select(){
+        $("#after_table").bootstrapTable({
+            url:"/findSeckill",
+            columns: [
+                {field: 'chec', checkbox: true},
+                {field: 'title', title: '商品名称', align: 'center', width: 150},
+                {field: 'smallPic', title: '商品图片', align: 'center', width: 150,formatter:function(value,row,index){
+                    return "<img style='width:50px;height:50px' src='/upload/"+value+"'>";
+                }},
+                {field: 'price', title: '原价格', align: 'center', width: 150},
+                {field: 'costPrice', title: '秒杀价格', align: 'center', width: 150},
+                {field: 'createTime', title: '添加日期', align: 'center', width: 150},
+                {field: 'checkTime', title: '审核日期', align: 'center', width: 150},
+                {field: 'status', title: '审核状态', align: 'center', width: 150,formatter:function(value,row,index){
+                        if(value==1){
+                            return "已审核";
+                        }else if(value==2){
+                            return "审核中";
+                        }else if(value==3){
+                            return "未审核";
+                        }
+                }},
+                {field: 'startTime', title: '开始时间', align: 'center', width: 150},
+                {field: 'endTime', title: '结束时间', align: 'center', width: 150},
+                {field: 'num', title: '秒杀商品数', align: 'center', width: 150},
+                {field: 'stockCount', title: '剩余库存数', align: 'center', width: 150},
+                {field: 'introduction', title: '描述', align: 'center', width: 150},
+                {field: 'tixingshu', title: '提醒数', align: 'center', width: 150},
+                {field:'zuo',title:'操作',formatter:function(value,row,index){
+                        return '<button type="button" class="btn btn-default" title="删除用户" onclick="getDelete('+row.id+')" >删除用户</button>' +
+                            '<button type="button" class="btn btn-default" title="修改用户" onclick="getUpdate('+row.id+')" data-toggle="modal" data-target="#editModal"><i class="fa fa-file-o"></i>修改用户</button>' ;
+                    }}
+            ],
+            pagination:true,
+            pageSize:5,
+            PageList:[5,10,15,20,25]
+        });
+    }
+    function getDelete(id){
+        alert(id);
+        $.ajax({
+            url:"/deleteSeckill",
+            type:"post",
+            data:{id:id},
+            success:function(){
+                $("#after_table").bootstrapTable("refresh");
+            }
+        });
+    }
+    function getAdd() {
+        $.ajax({
+            url: "/addSeckill",
+            type: "post",
+            data: $("#ff").serialize(),
+            success: function () {
+                alert("成功")
+                $("#after_table").bootstrapTable("refresh");
+            }
+        })
+    }
+    function getUpdate(id){
+        $.ajax({
+            url: "/updateSeckill",
+            type: "post",
+            data: {id: id},
+            success: function (data) {
+                $("#mid").val(data.id);
+                $("#title").val(data.title);
+                $("#smallPic").val(data.smallPic);
+                $("#price").val(data.price);
+                $("#costPrice").val(data.costPrice);
+                $("#createTime").val(data.createTime);
+                $("#checkTime").val(data.checkTime);
+                $("#status").val(data.status);
+                $("#startTime").val(data.startTime);
+                $("#endTime").val(data.endTime);
+                $("#num").val(data.num);
+                $("#stockCount").val(data.stockCount);
+                $("#introduction").val(data.introduction);
+                $("#tixingshu").val(data.tixingshu);
+            }
+        })
+    }
+</script>
+</html>
