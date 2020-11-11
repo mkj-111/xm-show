@@ -5,9 +5,12 @@ import com.xm.entity.xmtree;
 import com.xm.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -29,4 +32,8 @@ public class usercontroller {
     public List<String> selectPowerKeyList(@RequestParam Integer userId){
         return UserService.selectPowerKeyList(userId);
     }
+
+
+
+
 }

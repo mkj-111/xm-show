@@ -37,4 +37,7 @@ public class GoodsServiceImpl implements GoodsService {
     public xmgoods select(Integer id) {
         return xmgoodsMapper.select(id);
     }
+
+
+
 }

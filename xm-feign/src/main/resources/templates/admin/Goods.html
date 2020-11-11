@@ -69,8 +69,22 @@
                                 </select></td>
                             </tr>
                         <tr>
+                            <td>版本</td>
+                              <td>
+                                  <select name="goodsVersionId">
+                                      <option value="0">请选择</option>
+                                      <option value="1">8GB+256GB</option>
+                                      <option value="2">8GB+128GB</option>
+                                      <option value="3">12GB+256GB</option>
+                                      <option value="4">16GB+521GB</option>
+                                      <option value="5">8GB+256GB</option>
+                                      <option value="6">8GB+128GB</option>
+                                  </select>
+                              </td>
+                        </tr>
+                        <tr>
                             <td>分类</td>
-                            <td><select name="goodsTypeId" id="leixing">
+                            <td><select name="goodsTypeid" id="leixing">
                                 <option value="0">请选择</option>
                                 <option value="1">手机  电话卡</option>
                                 <option value="2">电视  盒子</option>
@@ -88,19 +102,19 @@
                             <td>数量</td>
                             <td><input class="form-control" placeholder="数量" name="goodsNum" id="quantity"></td>
                         </tr>
-                      <tr>
+                    <!--  <tr>
                             <td>图片</td>
                             <td>图片：<input type="file" name="goodsImg" /><br/>
 
                                 <input type="submit" value="上传" />
                             </td>
-                        </tr>
+                        </tr>-->
 
-                        <!--<tr>
+                       <tr>
                               <td>时间</td>
-                              <td><input  type="date" placeholder="时间" name="orderTime" id="memo">
+                              <td><input  type="date" name="goodsDate" id="riqi">
                               </td>
-                          </tr>-->
+                          </tr>
                         <tr>
                             <td>状态</td>
                             <td>  <input type="radio" name="goodsStatus" value="1" >在售
@@ -145,6 +159,7 @@
                          str3=rows.goodsName;
                          str1=rows.versionName;
                          str2=rows.colorName;
+
                          str+=str3+str2+str1;
                     return str;
                     }},
@@ -174,9 +189,9 @@
                     }
                 },
             ],
-            pagination: true,
+           /* pagination: true,
             pageSize: 10,
-            pageList: [10, 20, 30],
+            pageList: [10, 20, 30],*/
         });
     }
 
@@ -201,7 +216,8 @@
                 $("#bid").val(data.id);
                 $("#qname").val(data.goodsName);
                 $("#skinSelect").val(data.goodsColorId)
-                $("#leixing").val(data.goodsTypeId)
+                $("#leixing").val(data.goodsTypeid)
+                $("#riqi").val(data.goodsDate)
 
                 $("#quantity").val(data.goodsNum);
                 if(data.goodsStatus == 1){
@@ -209,12 +225,9 @@
                 } else if(data.goodsStatus == 2){
                     $("input[type=radio][name='goodsStatus'][value='2']").attr("checked",'checked');
                 }
-
             }
-
         })
     }
-
     function add() {
         $.ajax({
             url: "/goods/add",
@@ -242,7 +255,7 @@
         'uploadLimit':  -1,
         'fileTypeExts': '*.jpg;*.png',
         'onUploadSuccess':function(file,data,response){
-            var imgurl = "http://<%= request.getServerName()%>:<%=request.getServerPort()%>../upload/"+eval(data);
+            var imgurl = "http://<%= request.getServerName()%>request.getServerPort()%>../upload:<%=/"+eval(data);
             $("#add_img").attr("src",imgurl);
             $('#hideImg').val(eval(data));
         }

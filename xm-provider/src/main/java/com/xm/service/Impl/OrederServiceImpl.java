@@ -94,23 +94,43 @@ public class OrederServiceImpl implements OrederService {
 
                 //获取第一个单元格的内容
                 row.getCell(0).setCellType(Cell.CELL_TYPE_STRING);
-                Integer sNumber = row.getCell(0).getCellType();
+                Date sdate = row.getCell(0).getDateCellValue();
 
                 //获取第二个单元格的内容
-                Integer sName = row.getCell(1).getCellType();
+                Integer sum = row.getCell(1).getCellType();
 
                 //获取第三个单元格的内容
                 row.getCell(2).setCellType(Cell.CELL_TYPE_STRING);
-                Integer sAge = row.getCell(2).getCellType();
+                long price = row.getCell(2).getCellType();
 
                 xmorder student = new xmorder();
 
-                student.setOrderId(sNumber);
-                student.setOrderNumber(sName);
-                student.setOrderStatus(sAge);
+                student.setOrderDate(sdate);
+                student.setGoodsNum(sum);
+                student.setOrderPrice(price);
 
                 studentList.add(student);
             }
+            for(xmorder userInfo:studentList){
+
+                /**
+                 * 判断数据库表中是否存在用户记录，若存在，则更新，不存在，则保存记录
+                 */
+                String name = userInfo.getGoodsName();
+
+                int count = xmorderMapper.selectUser(name);
+
+                if(0 == count){
+                    result = xmorderMapper.addUser(userInfo);
+                }else{
+                    result = xmorderMapper.updateUser(userInfo);
+                }
+
+
+
+            }
+
+
         }
         return result;
     }
