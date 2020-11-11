@@ -21,8 +21,10 @@
     </properties>
 
     <dependencies>
-
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -39,14 +41,10 @@
             <version>3.10-beta2</version>
         </dependency>
         <dependency>
-
             <groupId>org.springframework.boot</groupId>
-
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-
         </dependency>
         <!-- 实体类Date注解 -->
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
