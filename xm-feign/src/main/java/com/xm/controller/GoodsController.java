@@ -2,7 +2,7 @@ package com.xm.controller;
 
 import com.xm.config.RedisConstant;
 import com.xm.entity.xmgoods;
-import com.xm.service.GoodsService;git
+import com.xm.service.GoodsService;
 
 import com.xm.utils.RedisUtil;
 import org.springframework.data.redis.core.RedisTemplate;
