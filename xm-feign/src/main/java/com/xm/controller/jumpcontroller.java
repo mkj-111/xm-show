@@ -77,4 +77,9 @@ public class jumpcontroller {
     public String text(){
         return "text";
     }
+    //跳转轮播管理页面
+    @RequestMapping("content")
+    public String content(){
+        return "admin/Content";
+    }
 }

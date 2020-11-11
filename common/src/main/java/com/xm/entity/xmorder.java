@@ -36,99 +36,103 @@ public class xmorder implements Serializable {
     private Date deliverytime;
     private String Orderstatusname;
 
-    public Integer getOrderId() {
-        return orderId;
-    }
-
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
-    }
-
-    public Integer getOrderNumber() {
-        return orderNumber;
     }
 
     public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
     }
 
-    public Integer getOrderStatus() {
-        return orderStatus;
-    }
-
     public void setOrderStatus(Integer orderStatus) {
         this.orderStatus = orderStatus;
-    }
-
-    public Integer getPayStatus() {
-        return payStatus;
     }
 
     public void setPayStatus(Integer payStatus) {
         this.payStatus = payStatus;
     }
 
-    public Long getOrderPrice() {
-        return orderPrice;
-    }
-
     public void setOrderPrice(Long orderPrice) {
         this.orderPrice = orderPrice;
-    }
-
-    public String getGoodsName() {
-        return goodsName;
     }
 
     public void setGoodsName(String goodsName) {
         this.goodsName = goodsName;
     }
 
-    public Integer getGoodsNum() {
-        return goodsNum;
-    }
-
     public void setGoodsNum(Integer goodsNum) {
         this.goodsNum = goodsNum;
-    }
-
-    public Integer getUserId() {
-        return userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public String getOrderInfo() {
-        return orderInfo;
-    }
-
     public void setOrderInfo(String orderInfo) {
         this.orderInfo = orderInfo;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
     }
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
-    public Date getDeliverytime() {
-        return deliverytime;
-    }
-
     public void setDeliverytime(Date deliverytime) {
         this.deliverytime = deliverytime;
     }
 
-    public String getOrderstatusname() {
-        return Orderstatusname;
-    }
-
     public void setOrderstatusname(String orderstatusname) {
         Orderstatusname = orderstatusname;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public Integer getOrderStatus() {
+        return orderStatus;
+    }
+
+    public Integer getPayStatus() {
+        return payStatus;
+    }
+
+    public Long getOrderPrice() {
+        return orderPrice;
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public Integer getGoodsNum() {
+        return goodsNum;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public String getOrderInfo() {
+        return orderInfo;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public Date getDeliverytime() {
+        return deliverytime;
+    }
+
+    public String getOrderstatusname() {
+        return Orderstatusname;
     }
 }

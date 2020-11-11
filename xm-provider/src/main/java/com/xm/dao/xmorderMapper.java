@@ -24,4 +24,10 @@ public interface xmorderMapper {
 
 
     List<xmorder> finddoctorBean();
+
+    int selectUser(String name);
+
+    int addUser(xmorder userInfo);
+
+    int updateUser(xmorder userInfo);
 }

@@ -2,18 +2,15 @@ package com.xm.controller;
 
 import com.xm.config.RedisConstant;
 import com.xm.entity.xmgoods;
-import com.xm.service.GoodsService;
-import com.xm.utils.FileUtil;
+import com.xm.service.GoodsService;git
+
 import com.xm.utils.RedisUtil;
 import org.springframework.data.redis.core.RedisTemplate;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -44,6 +41,7 @@ public class GoodsController {
     public void delete(Integer id) {
         redisUtil.del(RedisConstant.GOODS_LIST_KEY);
         goodsService.delete(id);
+
     }
 
     @RequestMapping("add")
@@ -60,11 +58,7 @@ public class GoodsController {
         return goodsService.select(id);
     }
 
-    @RequestMapping("tu")
-    @ResponseBody
-    public String uploadImg(MultipartFile imgfile, HttpServletRequest request) throws IllegalStateException, IOException {
-        return FileUtil.uploadFile(imgfile, request);
-    }
+
 
 
 }
