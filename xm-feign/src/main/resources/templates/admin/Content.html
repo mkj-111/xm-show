@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>淦用户管理页面</title>
+
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-datetimepicker.fr.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
+    <!--在客户端保存生成的导出文件-->
+    <script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <!--以XLSX（Excel 2007+ XML格式）格式导出表（SheetJS）-->
+    <script src="https://cdn.bootcss.com/xlsx/0.14.2/xlsx.core.min.js"></script>
+    <!--以PNG格式导出表格-->
+    <!--对于IE支持包括 html2canvas 之前的 es6-promise-->
+    <script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <!--将表导出为PDF文件-->
+    <script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF/jspdf.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <!--无论期望的格式如何，最后都包含 tableexport.jquery.plugin（不是tableexport）-->
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap/css/fileinput.min.css">
+    <script src="../js/bootstrap/js/fileinput.min.js"></script>
+</head>
+<body>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">文件上传</h4>
+            </div>
+            <div class="modal-body">
+                <input id="f_upload" type="file"  name="file"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+
+<div class="pull-left">
+    <div class="form-group form-inline">
+        <div class="btn-group">
+            <button class="btn btn-primary" id="upload">批量导入</button>
+            <button type="button" onclick="exportData()" class='btn btn-mini btn-info'>导出</button>
+            <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal"><i
+                    class="fa fa-file-o"></i> 新建
+            </button>
+            <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
+            <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i
+                    class="fa fa-refresh"></i> 刷新
+            </button>
+        </div>
+    </div>
+</div>
+<div class="box-tools pull-right">
+    <div class="has-feedback">
+        订单号：<input id="name">
+        <button class="btn btn-default" onclick="javascript:cha()">查询</button>
+
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h3 id="myModalLabel">品牌编辑</h3>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="ff">
+                    <input type="hidden" name="orderId" id="bid">
+                    <table class="table table-bordered table-striped" width="800px">
+                        <tr>
+                            <td>数量</td>
+                            <td><input class="form-control" placeholder="数量" name="goodsNum" id="quantity"></td>
+                        </tr>
+                        <tr>
+                            <td>消费金额</td>
+                            <td><input class="form-control" placeholder="消费金额" name="orderPrice" id="qname"></td>
+
+                        </tr>
+                        <tr>
+                            <td>备注</td>
+                            <td><input class="form-control" placeholder="备注" name="orderInfo" id="orderInfo"></td>
+
+                        </tr>
+                        <tr>
+                            <td>时间</td>
+                            <td><!--
+                                <div class="control-group">
+                                    <div class="controls input-append date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        <input size="16" type="text" name="orderDate" readonly>
+                                        <span class="add-on"><i class="icon-remove"></i></span>
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                            -->
+                                <input type="date" name="orderDate"/>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>状态</td>
+                            <td>  <input type="radio" name="orderStatus" value="1" >已完成
+                                <input type="radio" name="orderStatus" value="2" >未完成
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" onclick="javascript:add()">保存
+                </button>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table" id="myTable"></table>
+</body>
+<script type="text/javascript">
+    function exportData(){
+        $('#myTable').tableExport({
+            type: 'excel',
+            exportDataType: "all",
+            ignoreColumn: [0],//忽略某一列的索引
+            fileName: '订单表格',//下载文件名称
+            onCellHtmlData: function (cell, row, col, data){//处理导出内容,自定义某一行、某一列、某个单元格的内容
+                console.info(data);
+                return data;
+            },
+        });
+    }
+
+
+    $(function () {
+        initTable()
+    })
+
+    function cha() {
+        $("#myTable").bootstrapTable("refresh", {
+            query: {
+                orderId: $("#name").val(),
+            }
+        })
+    }
+
+    function initTable() {
+        $("#myTable").bootstrapTable({
+            url: "/con/find",
+            columns: [
+                {checkbox: true},
+                {field: 'categoryId', title: '订单编号', align: 'center', width: 150},
+                {field: 'contentTitle', title: '下单时间', align: 'center', width: 150},
+                {field: 'contentUrl', title:"数量", align: 'center', width: 150},
+                {field: 'contentStatus', title: '消费金额', align: 'center', width: 150},
+                {field: 'sortOrder', title: '状态', align: 'center', width: 150,formatter:function(value, rows, index) {
+                        var str = "";
+                        if (value == 1) {
+                            str += "已完成";
+                        }
+                        if (value == 2) {
+                            str += "未完成";
+                        }
+                        return str;
+                    }},
+                {field: 'tool', title: '操作', align: 'center', width: 150,
+                    formatter: function (value, rows, index) {
+                        var str = "";
+                        str += "<a href='javascript:deletePatientById(" + rows.orderId + ")'>删除&nbsp;&nbsp;</a>";
+                        str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' data-target='#editModal' onclick='javascript:xiugai(" + rows.orderId + ")'>修改</button>";
+                        return str;
+                    }
+                },
+            ],
+            pagination: true,
+            pageSize: 10,
+            pageList: [10, 20, 30],
+        });
+    }
+
+    function deletePatientById(orderId) {
+        $.ajax({
+            url: "/order/delete",
+            data: {id: orderId},
+            type: "post",
+            success: function () {
+                $("#myTable").bootstrapTable("refresh");
+            }
+        })
+    }
+
+    function xiugai(orderId) {
+        $.ajax({
+            url: "/order/huixian",
+            type: "post",
+            data: {id: orderId},
+            success: function (data) {
+                console.log(data)
+                $("#bid").val(data.orderId);
+                $("#qname").val(data.orderPrice);
+                $("#orderInfo").val(data.orderInfo)
+                $("#quantity").val(data.goodsNum);
+                if(data.orderStatus == 1){
+                    $("input[type=radio][name='orderStatus'][value='1']").attr("checked",'checked');
+                } else if(data.orderStatus == 2){
+                    $("input[type=radio][name='orderStatus'][value='2']").attr("checked",'checked');
+                }
+
+            }
+
+        })
+    }
+
+    function add() {
+        $.ajax({
+            url: "/order/add",
+            type: "post",
+            data: $("#ff").serialize(),
+            success: function () {
+                alert("成功")
+                $("#myTable").bootstrapTable("refresh");
+
+            }
+        })
+    }
+
+
+    $(function(){
+
+        initUpload();
+
+        $("#upload").on("click",function(){
+            $("#myModal").modal("show");
+        });
+
+    })
+    function initUpload(){
+        $("#f_upload").fileinput({
+            language: 'zh',//设置语言
+            uploadUrl: "/order/importstudent",//上传的地址
+            allowedFileExtensions: ["xls", "xlsx"],//接收的文件后缀
+            dropZoneTitle: '可以将文件拖放到这里',
+            uploadAsync: true, //默认异步上传
+            showPreview: true,//是否显示预览
+            showUpload: true,//是否显示上传按钮
+            showRemove: true, //显示移除按钮
+            showCancel:true,   //是否显示文件上传取消按钮。默认为true。只有在AJAX上传过程中，才会启用和显示
+            showCaption: true,//是否显示文件标题，默认为true
+            browseClass: "btn btn-primary", //文件选择器/浏览按钮的CSS类。默认为btn btn-primary
+            dropZoneEnabled: true,//是否显示拖拽区域
+            maxFileSize: 0,//最大上传文件数限制，单位为kb，如果为0表示不限制文件大小
+            minFileCount: 1, //每次上传允许的最少文件数。如果设置为0，则表示文件数是可选的。默认为0
+            maxFileCount: 1, //每次上传允许的最大文件数。如果设置为0，则表示允许的文件数是无限制的。默认为0
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",//当检测到用于预览的不可读文件类型时，将在每个预览文件缩略图中显示的图标。默认为<i class="glyphicon glyphicon-file"></i>
+            previewFileIconSettings: {
+                'docx': '<i ass="fa fa-file-word-o text-primary"></i>',
+                'xlsx': '<i class="fa fa-file-excel-o text-success"></i>',
+                'xls': '<i class="fa fa-file-excel-o text-success"></i>',
+                'pptx': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
+                'jpg': '<i class="fa fa-file-photo-o text-warning"></i>',
+                'pdf': '<i class="fa fa-file-archive-o text-muted"></i>',
+                'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
+            },
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",//字符串，当文件数超过设置的最大计数时显示的消息 maxFileCount。默认为：选择上传的文件数（{n}）超出了允许的最大限制{m}。请重试您的上传！
+            elErrorContainer: '#kartik-file-errors'
+        }).on("fileuploaded", function(event, data, previewId, index) {
+            console.log("fileuploaded");
+            console.log("event"+event);
+            console.log("data"+data);
+            console.log("previewId"+previewId);
+            console.log("index"+index);
+        }).on('fileerror', function(event, data, msg) {
+            console.log("fileerror");
+            console.log("event"+event);
+            console.log("data"+data);
+            console.log("msg"+msg);
+        });
+    }
+</script>
+</html>
