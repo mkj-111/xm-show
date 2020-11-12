@@ -26,10 +26,7 @@ public class jumpcontroller {
         return "main";
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 66dab9840e4c5943cd22d092e9150e1e591285f7
     /*于英彬*/
     //跳转会员列表页面
     @RequestMapping("member")
@@ -96,9 +93,6 @@ public class jumpcontroller {
     public String content() {
         return "admin/Content";
     }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 66dab9840e4c5943cd22d092e9150e1e591285f7
 }
