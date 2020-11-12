@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+
 @Service
 public class GoodsServiceImpl implements GoodsService {
     @Resource
@@ -26,7 +27,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public void add(xmgoods po) {
-        if (po.getId()!= null) {
+        if (po.getId() != null) {
             xmgoodsMapper.updateByPrimaryKey(po);
         } else {
             xmgoodsMapper.insert(po);
@@ -37,7 +38,6 @@ public class GoodsServiceImpl implements GoodsService {
     public xmgoods select(Integer id) {
         return xmgoodsMapper.select(id);
     }
-
 
 
 }

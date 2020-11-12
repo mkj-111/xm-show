@@ -27,11 +27,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void add(Member member) {
-       if(member.getId()!=null){
+        if (member.getId() != null) {
             memberMapper.update(member);
-       }else{
+        } else {
             memberMapper.insertSelective(member);
-       }
+        }
     }
 
     @Override

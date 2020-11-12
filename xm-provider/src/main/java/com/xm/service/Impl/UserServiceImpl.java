@@ -41,14 +41,13 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-    private List<xmtree> nodesList(Integer pid, Integer userId){
+    private List<xmtree> nodesList(Integer pid, Integer userId) {
         List<xmtree> treeList = UserMapper.selectTreeList(pid, userId);
         for (xmtree tree :
                 treeList) {
             List<xmtree> nodeList = nodesList(tree.getId(), userId);
             // 没有子节点
-            if(nodeList == null || nodeList.size() <= 0) {
+            if (nodeList == null || nodeList.size() <= 0) {
                 tree.setSelectable(true);
                 tree.setLeaf(true);
             } else {

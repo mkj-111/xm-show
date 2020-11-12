@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xm.dao.AfterMapper" >
-  <resultMap id="BaseResultMap" type="com.xm.entity.After" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="after_num" property="afterNum" jdbcType="INTEGER" />
-    <result column="after_username" property="afterUsername" jdbcType="VARCHAR" />
-    <result column="after_facilitynum" property="afterFacilitynum" jdbcType="INTEGER" />
-    <result column="after_productname" property="afterProductname" jdbcType="VARCHAR" />
-    <result column="after_reason" property="afterReason" jdbcType="VARCHAR" />
-    <result column="after_date" property="afterDate" jdbcType="DATE" />
-    <result column="after_status" property="afterStatus" jdbcType="VARCHAR" />
-  </resultMap>
-  <select id="find" resultMap="BaseResultMap">
-    select * from xm_after
-  </select>
-  <delete id="getDelete">
-    delete from xm_after where id=#{id}
-  </delete>
+<mapper namespace="com.xm.dao.AfterMapper">
+    <resultMap id="BaseResultMap" type="com.xm.entity.After">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="after_num" property="afterNum" jdbcType="INTEGER"/>
+        <result column="after_username" property="afterUsername" jdbcType="VARCHAR"/>
+        <result column="after_facilitynum" property="afterFacilitynum" jdbcType="INTEGER"/>
+        <result column="after_productname" property="afterProductname" jdbcType="VARCHAR"/>
+        <result column="after_reason" property="afterReason" jdbcType="VARCHAR"/>
+        <result column="after_date" property="afterDate" jdbcType="DATE"/>
+        <result column="after_status" property="afterStatus" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="find" resultMap="BaseResultMap">
+        select * from xm_after
+    </select>
+    <delete id="getDelete">
+        delete from xm_after where id=#{id}
+    </delete>
 </mapper>

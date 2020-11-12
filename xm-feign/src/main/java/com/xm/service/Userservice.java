@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@FeignClient(value="xmprovider")
+@FeignClient(value = "xmprovider")
 public interface Userservice {
     @RequestMapping("selectUserInfoByCode")
     public SysUser selectUserInfoByCode(@RequestParam String userCode);

@@ -27,12 +27,12 @@ public class OrderController {
 
     @RequestMapping("find")
     @ResponseBody
-    public List<xmorder>find(xmorder order){
-        List<xmorder> orderList= (List<xmorder>) redisUtil.get(RedisConstant.ORDER_LIST_KEY);
-        if(orderList ==null || orderList.isEmpty()){
-            orderList=orderService.find(order);
-            redisUtil.set(RedisConstant.ORDER_LIST_KEY,orderList);
-            redisUtil.expire(RedisConstant.ORDER_LIST_KEY,60);
+    public List<xmorder> find(xmorder order) {
+        List<xmorder> orderList = (List<xmorder>) redisUtil.get(RedisConstant.ORDER_LIST_KEY);
+        if (orderList == null || orderList.isEmpty()) {
+            orderList = orderService.find(order);
+            redisUtil.set(RedisConstant.ORDER_LIST_KEY, orderList);
+            redisUtil.expire(RedisConstant.ORDER_LIST_KEY, 60);
         }
         return orderList;
     }
@@ -53,20 +53,21 @@ public class OrderController {
 
     @RequestMapping("huixian")
     @ResponseBody
-    public xmorder selectId(Integer id){
+    public xmorder selectId(Integer id) {
         redisUtil.del(RedisConstant.ORDER_LIST_KEY);
         return orderService.select(id);
     }
+
     //导出
     @RequestMapping("exportBank")
     @ResponseBody
-    public void exportBank(HttpServletResponse response){
+    public void exportBank(HttpServletResponse response) {
         orderService.exportBank(response);
     }
 
     @RequestMapping("importstudent")
     public String excelImport(MultipartFile[] file, HttpSession session) {
-        return orderService.excelImport(file,session);
+        return orderService.excelImport(file, session);
     }
 
 }

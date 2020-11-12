@@ -11,15 +11,17 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
     @Bean
-    public Queue logQueue(){
+    public Queue logQueue() {
         return new Queue("log-queue");
     }
+
     @Bean
-    public FanoutExchange exchange(){
+    public FanoutExchange exchange() {
         return new FanoutExchange("fanout");
     }
+
     @Bean
-    public Binding bindingAckQueue2Exchange(Queue logQueue,FanoutExchange fanoutExchange){
-            return BindingBuilder.bind(logQueue).to(exchange());
+    public Binding bindingAckQueue2Exchange(Queue logQueue, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(logQueue).to(exchange());
     }
 }

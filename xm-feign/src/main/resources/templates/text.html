@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <title>淦用户管理页面</title>
 
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap-table.min.css">
     <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
@@ -30,91 +31,142 @@
     <script src="../js/bootstrap/js/fileinput.min.js"></script>
 </head>
 
-
 <body>
-<form id="pic" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="${userComplete.id}">
-    <div  class="row">
-        <div class="col-xs-2">
-            <label class="control-label">营业执照：</label>
+<div class="content">
+    <form role="form">
+        <div class="form-group countryList">
+            <label><span class="star">*</span>都道府県</label>
+            <select name="" id="" class="form-control province"
+                    onmousedown="if(this.options.length>6){this.size=7}" onblur="this.size=0"
+                    onchange="this.size=0">
+                <option value="">请选择都道</option>
+            </select>
+            <select name="" id="" class="form-control city" onmousedown="if(this.options.length>6){this.size=7}"
+                    onblur="this.size=0" onchange="this.size=0">
+                <option value="">请选择府</option>
+            </select>
+            <select name="" id="" class="form-control area" onmousedown="if(this.options.length>6){this.size=7}"
+                    onblur="this.size=0" onchange="this.size=0">
+                <option value="">请选择县</option>
+            </select>
         </div>
-        <div class="col-xs-4 updateP1">
-            <img src="${pageContext.request.contextPath}/corporation/showImages/${userComplete.businessLicense}"
-                 id="businessLicense"
-                 style="width: 150px;height: 150px; border:1px solid #989898;">
-            <input type="hidden" name="businessLicense" value="${userComplete.businessLicense}"/>
-        </div>
-        <div class="col-md-4">
-            <div class="container">
-                <div class="col-md-12">
-                    <input type="file" name="file1" id="file1">
-                </div>
-                &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="重新上传" onclick="doUpload1()">
-            </div>
-        </div>
-    </div>
-    <div  class="row">
-        <div class="col-xs-1 col-xs-offset-3">
-            <input type="submit" name="提交" class="btn btn-danger">
-        </div>
-    </div>
-</form>
-
-
+    </form>
+</div>
 </body>
 <script>
-    //图片预览路径
-    function getObjectURL(file) {
-        var url = null;
-        if(window.createObjectURL != undefined) { // basic
-            url = window.createObjectURL(file);
-        } else if(window.URL != undefined) { // mozilla(firefox)
-            url = window.URL.createObjectURL(file);
-        } else if(window.webkitURL != undefined) { // webkit or chrome
-            url = window.webkitURL.createObjectURL(file);
-        }
-        return url;
-    }
-    function doUpload1(){
-        var formd = new FormData($("#pic")[0]);
-        var imgurl = getObjectURL($("#file1")[0].files[0]);
-        $("#businessLicense").attr({
-            "src":imgurl
-        });
-        var url="${pageContext.request.contextPath}/corporation/sendFile1";
+    // 城市联动接口
+    var firstLevel = [];  //一级（省）
+    var secondLevel = []; //二级（市）
+    var thirdLevel = [];  //三级（区）
+    $(function () {
         $.ajax({
-            type:"post",
-            url:url,
-            data:formd,
-            contentType:false,
-            processData:false,
-            dataType:"json",
-            success:function (data) {
-                if(null!=data && data.flag==true){
-                    alert("上传成功！");
-                    $("#pic input[name='businessLicense']").val(data.filename);
+            url: "/area/areafindll",  //请求地址
+            type: 'GET',
+            contentType: "application/json",
+
+            success: function (data) {
+                var data = data.data
+                for (i = 0; i < data.length; i++) {  //分别把省市区装成数组
+                    if (data[i].level === 0) {
+                        firstLevel.push(data[i])
+                    } else if (data[i].level === 1) {
+                        secondLevel.push(data[i])
+                    } else if (data[i].level === 2) {
+                        thirdLevel.push(data[i])
+                    }
                 }
-            },error:function (data) {
-                alert(1);
-                alert(data.message);
+                //组成新的省市区层级json
+                thirdLevel.forEach((item) = > {
+                    let _index = secondLevel.findIndex((seconditem) = > {
+                        return seconditem.code === item.pCode
+                    }
+            )
+                if (_index > -1) {
+                    if (!secondLevel[_index].children) {
+                        secondLevel[_index].children = []
+                    }
+                    secondLevel[_index].children.push(item)
+                }
+            })
+                secondLevel.forEach((item) = > {
+                    let _index = firstLevel.findIndex((seconditem) = > {
+                        return seconditem.code === item.pCode
+                    }
+            )
+                if (_index > -1) {
+                    if (!firstLevel[_index].children) {
+                        firstLevel[_index].children = []
+                    }
+                    firstLevel[_index].children.push(item)
+                }
+            })
+                // console.log(firstLevel)
+
+                //分别渲染省市区下拉菜单select
+                for (var j = 0; j < firstLevel.length; j++) {
+                    /* 一级   */
+                    if (firstLevel != null) {
+                        var html = "";
+                        var htmlL = "";
+                        var htmlM = "";
+                        for (var i = 0; i < firstLevel.length; i++) {
+                            htmlL = "<option value=''>请选择都道</option>"
+                            html += "<option value='" + firstLevel[i].name + "'>" + firstLevel[i].name + "</option>";
+                            htmlM = htmlL + html;
+                        }
+                        $(".province").html(htmlM);
+                    }
+                    // 二级
+                    $(".province").change(function () {
+                        var htmls = "";
+                        var htmlL = "";
+                        var htmlM = "";
+                        if (firstLevel != null) {
+                            for (var i = 0; i < firstLevel.length; i++) {
+                                if ($(this).val() == firstLevel[i].name) {
+                                    var a = firstLevel[i].children;
+                                    // console.log(a);
+                                    for (var j = 0; j < a.length; j++) {
+                                        htmlL = "<option value=''>请选择府</option>"
+                                        htmls += "<option value='" + a[j].name + "'>" + a[j].name + "</option>";
+                                        htmlM = htmlL + htmls;
+                                    }
+                                    $(".city").html(htmlM);
+                                }
+                            }
+                        }
+                    })
+                    // 三级
+                    $(".city").change(function () {
+                        var htmls = "";
+                        var htmlL = "";
+                        var htmlM = "";
+                        if (firstLevel != null) {
+                            for (var i = 0; i < firstLevel.length; i++) {
+                                var ss = firstLevel[i].children;
+                                for (j = 0; j < ss.length; j++) {
+                                    if ($(this).val() == ss[j].name) {
+                                        var a = ss[j].children
+                                        for (m = 0; m < a.length; m++) {
+                                            htmlL = "<option value=''>请选择县</option>"
+                                            htmls += "<option value='" + a[m].name + "'>" + a[m].name + "</option>";
+                                            htmlM = htmlL + htmls;
+                                        }
+
+                                    }
+                                }
+                                $(".area").html(htmlM);
+                            }
+                        }
+                    })
+                }
+
+            },
+            error: function () {
+                console.log('数据发送失败');
             }
         });
-    }
-    $("#pic").submit(function () {
-        var data = $("#pic").serialize();
-        $.ajax({
-            url:"${pageContext.request.contextPath}/corporation/updateCorporation",
-            data:data,
-            type:"post",
-            datatype:"json",
-            success:function (data) {
-                if(data){
-                    alert("修改成功！");
-                }
-            }
-        })
-    });
+    })
 
 
 </script>
-</html>

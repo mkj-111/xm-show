@@ -14,13 +14,13 @@ import java.util.List;
 
 public class OrderController {
 
-@Resource
+    @Resource
     private OrederService orederService;
 
- @RequestMapping("findq")
-    public List<xmorder>find(@RequestBody xmorder order){
-     return orederService.find(order);
- }
+    @RequestMapping("findq")
+    public List<xmorder> find(@RequestBody xmorder order) {
+        return orederService.find(order);
+    }
 
     @RequestMapping("deleteq")
     public void delete(@RequestParam Integer id) {
@@ -38,12 +38,14 @@ public class OrderController {
 
         return orederService.select(id);
     }
+
     //导出
     @RequestMapping("exportBank")
     @ResponseBody
-    public void exportBank(HttpServletResponse response){
+    public void exportBank(HttpServletResponse response) {
         orederService.exportBank(response);
     }
+
     /**
      * 导入excel
      */
@@ -64,9 +66,9 @@ public class OrderController {
             e.printStackTrace();
         }
 
-        if(result > 0){
+        if (result > 0) {
             return "{\"result\":\"excel文件数据导入成功！\"}";
-        }else{
+        } else {
             return "{\"result\":\"excel文件数据导入失败！\"}";
         }
 

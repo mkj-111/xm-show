@@ -28,13 +28,20 @@
             </div>
             <div class="form-group form-inline">
                 <div>
-                    <button type="button" class="btn btn-default" title="修改用户" ><i class="fa fa-trash-o"></i>修改用户</button>
-                    <button type="button" class="btn btn-default" title="添加用户" data-toggle="modal" data-target="#editModal"><i class="fa fa-file-o"></i>添加用户</button>
-                    <button type="button" class="btn btn-default" title="关闭用户" ><i class="fa fa-trash-o"></i>关闭用户</button>
-                    <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                    <button type="button" class="btn btn-default" title="修改用户"><i class="fa fa-trash-o"></i>修改用户
+                    </button>
+                    <button type="button" class="btn btn-default" title="添加用户" data-toggle="modal"
+                            data-target="#editModal"><i class="fa fa-file-o"></i>添加用户
+                    </button>
+                    <button type="button" class="btn btn-default" title="关闭用户"><i class="fa fa-trash-o"></i>关闭用户
+                    </button>
+                    <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i
+                            class="fa fa-refresh"></i> 刷新
+                    </button>
                 </div>
             </div>
-            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -43,11 +50,12 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" id="ff">
-                                <input  name="id" id="mid"> <!--type="hidden"-->
+                                <input name="id" id="mid"> <!--type="hidden"-->
                                 <table class="table table-bordered table-striped" width="800px">
                                     <tr>
                                         <td>用户名</td>
-                                        <td><input class="form-control" placeholder="用户名" name="username" id="username"></td>
+                                        <td><input class="form-control" placeholder="用户名" name="username" id="username">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>真实姓名</td>
@@ -58,8 +66,8 @@
                                         <td>
                                             <select name="gender" id="gender">
                                                 <option value="-1" selected>--请选择性别--</option>
-                                                <option value="1" >MALE</option>
-                                                <option value="2" >FEMALE</option>
+                                                <option value="1">MALE</option>
+                                                <option value="2">FEMALE</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -69,15 +77,18 @@
                                     </tr>
                                     <tr>
                                         <td>邮箱</td>
-                                        <td><input class="form-control" placeholder="邮箱" name="xmEmail" id="xmEmail"></td>
+                                        <td><input class="form-control" placeholder="邮箱" name="xmEmail" id="xmEmail">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>地址</td>
-                                        <td><input class="form-control" placeholder="地址" name="address" id="address"></td>
+                                        <td><input class="form-control" placeholder="地址" name="address" id="address">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>加入时间</td>
-                                        <td><input class="form-control" placeholder="加入时间" name="addDate" id="addDate"></td>
+                                        <td><input class="form-control" placeholder="加入时间" name="addDate" id="addDate">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>地区</td>
@@ -98,21 +109,23 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                    <td>状态</td>
-                                    <td>
-                                        <select name="status" id="status">
-                                            <option value="-1" selected>--请选择状态--</option>
-                                            <option value="1" >启用</option>
-                                            <option value="2" >禁用</option>
-                                            <option value="3" >黑名单</option>
-                                        </select>
-                                    </td>
-                                </tr>
+                                        <td>状态</td>
+                                        <td>
+                                            <select name="status" id="status">
+                                                <option value="-1" selected>--请选择状态--</option>
+                                                <option value="1">启用</option>
+                                                <option value="2">禁用</option>
+                                                <option value="3">黑名单</option>
+                                            </select>
+                                        </td>
+                                    </tr>
                                 </table>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" onclick="javascript:getAdd()">保存</button>
+                            <button class="btn btn-success" data-dismiss="modal" aria-hidden="true"
+                                    onclick="javascript:getAdd()">保存
+                            </button>
                             <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
                         </div>
                     </div>
@@ -131,85 +144,96 @@
 </div>
 </body>
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         select();
     })
-    function getSearch(){
+
+    function getSearch() {
         alert($("#user").val());
-        $("#member_table").bootstrapTable("refresh",{
-            query:{
-                username:$("#user").val(),
-                staDate:$("#staDate").val(),
-                endDate:$("#endDate").val(),
+        $("#member_table").bootstrapTable("refresh", {
+            query: {
+                username: $("#user").val(),
+                staDate: $("#staDate").val(),
+                endDate: $("#endDate").val(),
             }
         })
     }
-    function select(){
+
+    function select() {
         $("#member_table").bootstrapTable({
-            url:"/selectyyb",
+            url: "/selectyyb",
             columns: [
                 {field: 'chec', checkbox: true},
                 {field: 'username', title: '用户名', align: 'center', width: 150},
                 {field: 'name', title: '真实姓名', align: 'center', width: 150},
-                {field: 'gender', title: '性别', align: 'center', width: 150,formatter:function(value,row,index){
-                        if(value==1){
+                {
+                    field: 'gender', title: '性别', align: 'center', width: 150, formatter: function (value, row, index) {
+                        if (value == 1) {
                             return "MALE";
-                        }else if(value==2){
+                        } else if (value == 2) {
                             return "FEMALE";
                         }
-                    }},
+                    }
+                },
                 {field: 'phone', title: '电话', align: 'center', width: 150},
                 {field: 'xmEmail', title: '邮箱', align: 'center', width: 150},
                 {field: 'address', title: '地址', align: 'center', width: 150},
                 {field: 'addDate', title: '加入时间', align: 'center', width: 150},
                 {field: 'rankName', title: '等级', align: 'center', width: 150},
-                {field: 'status', title: '状态', align: 'center', width: 150,formatter:function(value,row,index){
-                    if(value==1){
-                        return "启用";
-                    }else if(value==2){
-                        return "禁用";
-                    }else if(value==3){
-                        return "黑名单";
+                {
+                    field: 'status', title: '状态', align: 'center', width: 150, formatter: function (value, row, index) {
+                        if (value == 1) {
+                            return "启用";
+                        } else if (value == 2) {
+                            return "禁用";
+                        } else if (value == 3) {
+                            return "黑名单";
+                        }
                     }
-                }},
-                {field:'zuo',title:'操作',formatter:function(value,row,index){
-                    str='<button type="button" class="btn btn-default" title="删除用户" onclick="getDelete('+row.id+')" >删除用户</button>' +
-                        '<button type="button" class="btn btn-default" title="修改用户" onclick="getUpdate('+row.id+')" data-toggle="modal" data-target="#editModal"><i class="fa fa-file-o"></i>修改用户</button>';
-                    return str;
-                }}
+                },
+                {
+                    field: 'zuo', title: '操作', formatter: function (value, row, index) {
+                        str = '<button type="button" class="btn btn-default" title="删除用户" onclick="getDelete(' + row.id + ')" >删除用户</button>' +
+                            '<button type="button" class="btn btn-default" title="修改用户" onclick="getUpdate(' + row.id + ')" data-toggle="modal" data-target="#editModal"><i class="fa fa-file-o"></i>修改用户</button>';
+                        return str;
+                    }
+                }
             ],
-            pagination:true,
-            pageSize:2,
-            PageList:[2,4,6,8,10]
+            pagination: true,
+            pageSize: 2,
+            PageList: [2, 4, 6, 8, 10]
         });
     }
-    function getAdd(){
+
+    function getAdd() {
         $.ajax({
-            url:"/addyyb",
-            type:"post",
-            data:$("#ff").serialize(),
-            success:function(){
+            url: "/addyyb",
+            type: "post",
+            data: $("#ff").serialize(),
+            success: function () {
                 $("#member_table").bootstrapTable("refresh");
             }
         })
     }
-    function getDelete(id){
+
+    function getDelete(id) {
         $.ajax({
-            url:"/getDeleteyyb",
-            type:"post",
-            data:{id:id},
-            success:function(){
+            url: "/getDeleteyyb",
+            type: "post",
+            data: {id: id},
+            success: function () {
                 $("#member_table").bootstrapTable("refresh");
             }
         });
     }
-    function getUpdate(id){
+
+    function getUpdate(id) {
         alert(id)
         $.ajax({
-            url:"/getUpdateyyb",
-            type:"post",
-            data:{id:id},
-            success:function(data){
+            url: "/getUpdateyyb",
+            type: "post",
+            data: {id: id},
+            success: function (data) {
                 $("#mid").val(data.id);
                 $("#address").val(data.address);
                 $("#email").val(data.email);

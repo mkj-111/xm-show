@@ -33,7 +33,6 @@
 <body>
 
 
-
 <div class="pull-left">
     <div class="form-group form-inline">
         <div class="btn-group">
@@ -76,8 +75,8 @@
                         </tr>
                         <tr>
                             <td>状态</td>
-                            <td>  <input type="radio" name="contentStatus" value="1" >已下载
-                                <input type="radio" name="contentStatus" value="2" >未下载
+                            <td><input type="radio" name="contentStatus" value="1">已下载
+                                <input type="radio" name="contentStatus" value="2">未下载
                             </td>
                         </tr>
                     </table>
@@ -95,13 +94,13 @@
 <table class="table" id="myTable"></table>
 </body>
 <script type="text/javascript">
-    function exportData(){
+    function exportData() {
         $('#myTable').tableExport({
             type: 'excel',
             exportDataType: "all",
             ignoreColumn: [0],//忽略某一列的索引
             fileName: '订单表格',//下载文件名称
-            onCellHtmlData: function (cell, row, col, data){//处理导出内容,自定义某一行、某一列、某个单元格的内容
+            onCellHtmlData: function (cell, row, col, data) {//处理导出内容,自定义某一行、某一列、某个单元格的内容
                 console.info(data);
                 return data;
             },
@@ -128,8 +127,13 @@
                 {checkbox: true},
                 {field: 'id', title: 'ID', align: 'center', width: 150},
                 {field: 'contentTitle', title: '内容标题', align: 'center', width: 150},
-                {field: 'contentUrl', title:"链接路径", align: 'center', width: 150},
-                {field: 'contentStatus', title: '状态', align: 'center', width: 150,formatter:function(value, rows, index) {
+                {field: 'contentUrl', title: "链接路径", align: 'center', width: 150},
+                {
+                    field: 'contentStatus',
+                    title: '状态',
+                    align: 'center',
+                    width: 150,
+                    formatter: function (value, rows, index) {
                         var str = "";
                         if (value == 1) {
                             str += "已下载";
@@ -138,8 +142,10 @@
                             str += "未下载";
                         }
                         return str;
-                    }},
-                {field: 'tool', title: '操作', align: 'center', width: 150,
+                    }
+                },
+                {
+                    field: 'tool', title: '操作', align: 'center', width: 150,
                     formatter: function (value, rows, index) {
                         var str = "";
                         str += "<a href='javascript:deletePatientById(" + rows.id + ")'>删除&nbsp;&nbsp;</a>";
@@ -175,10 +181,10 @@
                 $("#bid").val(data.id);
                 $("#qname").val(data.contentUrl);
                 $("#quantity").val(data.contentTitle);
-                if(data.contentStatus == 1){
-                    $("input[type=radio][name='contentStatus'][value='1']").attr("checked",'checked');
-                } else if(data.contentStatus == 2){
-                    $("input[type=radio][name='contentStatus'][value='2']").attr("checked",'checked');
+                if (data.contentStatus == 1) {
+                    $("input[type=radio][name='contentStatus'][value='1']").attr("checked", 'checked');
+                } else if (data.contentStatus == 2) {
+                    $("input[type=radio][name='contentStatus'][value='2']").attr("checked", 'checked');
                 }
 
             }
@@ -198,7 +204,6 @@
             }
         })
     }
-
 
 
 </script>

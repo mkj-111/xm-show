@@ -27,43 +27,45 @@ import java.util.List;
 @RequestMapping("user")
 public class UserController {
 
-private Logger log= LoggerFactory.getLogger(UserController.class);
+    private Logger log = LoggerFactory.getLogger(UserController.class);
 
-@Resource
+    @Resource
     private com.xm.service.Userservice Userservice;
 
-@RequestMapping("selectUserInfoByCode")
-public SysUser selectUserInfoByCode(@RequestParam String userCode){
-    return Userservice.selectUserInfoByCode(userCode);
-}
+    @RequestMapping("selectUserInfoByCode")
+    public SysUser selectUserInfoByCode(@RequestParam String userCode) {
+        return Userservice.selectUserInfoByCode(userCode);
+    }
+
     @RequestMapping("login")
     @ResponseBody
-    public String login(SysUser user){
-        Subject subject=SecurityUtils.getSubject();
-        UsernamePasswordToken upt=new UsernamePasswordToken(user.getUsercode(),user.getPassword());
+    public String login(SysUser user) {
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken upt = new UsernamePasswordToken(user.getUsercode(), user.getPassword());
         try {
             subject.login(upt);
             log.info("登录成功");
             return "成功";
-        }catch (UnknownAccountException uae){
+        } catch (UnknownAccountException uae) {
             log.info("帐号不存在");
             return "账号不存在";
 
-        }catch (IncorrectCredentialsException ice){
+        } catch (IncorrectCredentialsException ice) {
             log.info("密码错误");
             return "密码错误";
 
-        }catch (AuthenticationException ae){
+        } catch (AuthenticationException ae) {
             log.info("网路异常");
             return "网路异常";
         }
     }
+
     @RequestMapping("/queryTree")
     @ResponseBody
     public List<xmtree> queryTree() {
         System.out.println("登录成功");
         //查询当前用户所属的权限树
-        SysUser user = (SysUser)SecurityUtils.getSubject().getPrincipal();
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
         return Userservice.selectTreeList(user.getId());
     }
 

@@ -17,19 +17,21 @@ public class AfterController {
 
     /**
      * 查询
+     *
      * @return
      */
     @RequestMapping("yybfind")
-    public List<After> find(){
+    public List<After> find() {
         return afterService.find();
     }
 
     /**
      * 删除
+     *
      * @param id
      */
     @RequestMapping("yybgetDelet")
-    public void yybgetDelete(@RequestParam Integer id){
+    public void yybgetDelete(@RequestParam Integer id) {
         afterService.getDelete(id);
     }
 }

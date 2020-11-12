@@ -25,19 +25,19 @@ public class AfterController {
 
     @RequestMapping("yybfind")
     @ResponseBody
-    public List<After> find(){
-        List<After> afterList= (List<After>) redisUtil.get(RedisConstant.AFTER_LIST_KEY);
-        if(afterList==null || afterList.isEmpty()){
-            afterList=afterService.find();
-            redisUtil.set(RedisConstant.AFTER_LIST_KEY,afterList);
-            redisUtil.expire(RedisConstant.AFTER_LIST_KEY,60);
+    public List<After> find() {
+        List<After> afterList = (List<After>) redisUtil.get(RedisConstant.AFTER_LIST_KEY);
+        if (afterList == null || afterList.isEmpty()) {
+            afterList = afterService.find();
+            redisUtil.set(RedisConstant.AFTER_LIST_KEY, afterList);
+            redisUtil.expire(RedisConstant.AFTER_LIST_KEY, 60);
         }
         return afterList;
     }
 
     @RequestMapping("yybgetDelet")
     @ResponseBody
-    public void yybgetDelete(Integer id){
+    public void yybgetDelete(Integer id) {
         redisUtil.del(RedisConstant.AFTER_LIST_KEY);
         afterService.yybgetDelete(id);
     }

@@ -4,6 +4,7 @@ import com.xm.entity.xmorder;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+
 @Mapper
 public interface xmorderMapper {
     int deleteByPrimaryKey(Integer id);

@@ -12,14 +12,14 @@ import java.util.List;
 @Controller
 @RequestMapping("con")
 public class ContentController {
- @Resource
+    @Resource
     private ContentService contentService;
 
- @RequestMapping("findll")
- @ResponseBody
-    public List<xmcontent>findw(){
-     return contentService.findw();
- }
+    @RequestMapping("findll")
+    @ResponseBody
+    public List<xmcontent> findw() {
+        return contentService.findw();
+    }
 
 
     @RequestMapping("deletell")
@@ -27,14 +27,16 @@ public class ContentController {
     public void delete(Integer id) {
         contentService.delete(id);
     }
+
     @RequestMapping("addll")
     @ResponseBody
     public void insert(xmcontent po) {
         contentService.add(po);
     }
+
     @RequestMapping("huixianll")
     @ResponseBody
-    public xmcontent selectId(Integer id){
+    public xmcontent selectId(Integer id) {
 
         return contentService.select(id);
     }

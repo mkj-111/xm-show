@@ -10,13 +10,14 @@ import java.util.List;
 
 @RestController
 public class ContentController {
-   @Resource
+    @Resource
     private ContentService contentService;
 
- @RequestMapping("findll")
-    public List<xmcontent>findw(){
-     return contentService.findw();
- }
+    @RequestMapping("findll")
+    public List<xmcontent> findw() {
+        return contentService.findw();
+    }
+
     @RequestMapping("deletell")
     public void delete(@RequestParam Integer id) {
 
@@ -34,13 +35,13 @@ public class ContentController {
 
         return contentService.select(id);
     }
+
     //导入
     @RequestMapping("daoru")
     @ResponseBody
-    public void importExcel(MultipartFile filename){
+    public void importExcel(MultipartFile filename) {
         contentService.importExcel(filename);
     }
-
 
 
 }

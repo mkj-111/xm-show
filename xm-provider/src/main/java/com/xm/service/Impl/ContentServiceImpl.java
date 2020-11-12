@@ -24,9 +24,10 @@ public class ContentServiceImpl implements ContentService {
     public void delete(Integer id) {
         xmcontentMapper.deleteByPrimaryKey(id);
     }
+
     @Override
     public void add(xmcontent po) {
-        if (po.getId()!= null) {
+        if (po.getId() != null) {
             xmcontentMapper.updateByPrimaryKey(po);
         } else {
             xmcontentMapper.insert(po);
@@ -40,7 +41,7 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public void importExcel(MultipartFile filename) {
-        String [] fielarr={"categoryId","contentTitle","contentUrl","contentPic","contentStatus","sortOrder"};
+        String[] fielarr = {"categoryId", "contentTitle", "contentUrl", "contentPic", "contentStatus", "sortOrder"};
 
         List<xmcontent> list = PoiUtils.importExcel(filename, fielarr, xmcontent.class);
         xmcontentMapper.add1(list);

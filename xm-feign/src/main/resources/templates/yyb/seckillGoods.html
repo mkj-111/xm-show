@@ -30,13 +30,20 @@
             </div>
             <div class="form-group form-inline">
                 <div>
-                    <button type="button" class="btn btn-default" title="修改用户" ><i class="fa fa-trash-o"></i>修改用户</button>
-                    <button type="button" class="btn btn-default" title="添加用户" data-toggle="modal" data-target="#editModal"><i class="fa fa-file-o"></i>添加用户</button>
-                    <button type="button" class="btn btn-default" title="关闭用户" ><i class="fa fa-trash-o"></i>关闭用户</button>
-                    <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                    <button type="button" class="btn btn-default" title="修改用户"><i class="fa fa-trash-o"></i>修改用户
+                    </button>
+                    <button type="button" class="btn btn-default" title="添加用户" data-toggle="modal"
+                            data-target="#editModal"><i class="fa fa-file-o"></i>添加用户
+                    </button>
+                    <button type="button" class="btn btn-default" title="关闭用户"><i class="fa fa-trash-o"></i>关闭用户
+                    </button>
+                    <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i
+                            class="fa fa-refresh"></i> 刷新
+                    </button>
                 </div>
             </div>
-            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -45,7 +52,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="post" id="ff">
-                                <input  name="id" id="mid"> <!--type="hidden"-->
+                                <input name="id" id="mid"> <!--type="hidden"-->
                                 <table class="table table-bordered table-striped" width="800px">
                                     <tr>
                                         <td>商品名称</td>
@@ -63,15 +70,18 @@
                                     </tr>
                                     <tr>
                                         <td>秒杀价格</td>
-                                        <td><input class="form-control" placeholder="秒杀价格" name="costPrice" id="costPrice"></td>
+                                        <td><input class="form-control" placeholder="秒杀价格" name="costPrice"
+                                                   id="costPrice"></td>
                                     </tr>
                                     <tr>
                                         <td>添加日期</td>
-                                        <td><input class="form-control" placeholder="添加日期" name="createTime" id="createTime"></td>
+                                        <td><input class="form-control" placeholder="添加日期" name="createTime"
+                                                   id="createTime"></td>
                                     </tr>
                                     <tr>
                                         <td>审核日期</td>
-                                        <td><input class="form-control" placeholder="审核日期" name="checkTime" id="checkTime"></td>
+                                        <td><input class="form-control" placeholder="审核日期" name="checkTime"
+                                                   id="checkTime"></td>
                                     </tr>
                                     <tr>
                                         <td>审核状态</td>
@@ -86,11 +96,13 @@
                                     </tr>
                                     <tr>
                                         <td>开始时间</td>
-                                        <td><input class="form-control" placeholder="开始时间" name="startTime" id="startTime"></td>
+                                        <td><input class="form-control" placeholder="开始时间" name="startTime"
+                                                   id="startTime"></td>
                                     </tr>
                                     <tr>
                                         <td>结束时间</td>
-                                        <td><input class="form-control" placeholder="结束时间" name="endTime" id="endTime"></td>
+                                        <td><input class="form-control" placeholder="结束时间" name="endTime" id="endTime">
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>秒杀商品数</td>
@@ -98,21 +110,26 @@
                                     </tr>
                                     <tr>
                                         <td>剩余库存</td>
-                                        <td><input class="form-control" placeholder="剩余库存" name="stockCount" id="stockCount"></td>
+                                        <td><input class="form-control" placeholder="剩余库存" name="stockCount"
+                                                   id="stockCount"></td>
                                     </tr>
                                     <tr>
                                         <td>描述</td>
-                                        <td><input class="form-control" placeholder="描述" name="introduction" id="introduction"></td>
+                                        <td><input class="form-control" placeholder="描述" name="introduction"
+                                                   id="introduction"></td>
                                     </tr>
                                     <tr>
                                         <td>提醒数</td>
-                                        <td><input class="form-control" placeholder="提醒数" name="tixingshu" id="tixingshu"></td>
+                                        <td><input class="form-control" placeholder="提醒数" name="tixingshu"
+                                                   id="tixingshu"></td>
                                     </tr>
                                 </table>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" onclick="javascript:getAdd()">保存</button>
+                            <button class="btn btn-success" data-dismiss="modal" aria-hidden="true"
+                                    onclick="javascript:getAdd()">保存
+                            </button>
                             <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
                         </div>
                     </div>
@@ -131,68 +148,86 @@
 </div>
 </body>
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         select();
     })
-    function getSearch(){
+
+    function getSearch() {
         alert($("#user").val());
-        $("#member_table").bootstrapTable("refresh",{
-            query:{
-                username:$("#user").val(),
-                staDate:$("#staDate").val(),
-                endDate:$("#endDate").val(),
+        $("#member_table").bootstrapTable("refresh", {
+            query: {
+                username: $("#user").val(),
+                staDate: $("#staDate").val(),
+                endDate: $("#endDate").val(),
             }
         })
     }
-    function select(){
+
+    function select() {
         $("#after_table").bootstrapTable({
-            url:"/findSeckill",
+            url: "/findSeckill",
             columns: [
                 {field: 'chec', checkbox: true},
                 {field: 'title', title: '商品名称', align: 'center', width: 150},
-                {field: 'smallPic', title: '商品图片', align: 'center', width: 150,formatter:function(value,row,index){
-                    return "<img style='width:50px;height:50px' src='/upload/"+value+"'>";
-                }},
+                {
+                    field: 'smallPic',
+                    title: '商品图片',
+                    align: 'center',
+                    width: 150,
+                    formatter: function (value, row, index) {
+                        return "<img style='width:50px;height:50px' src='/upload/" + value + "'>";
+                    }
+                },
                 {field: 'price', title: '原价格', align: 'center', width: 150},
                 {field: 'costPrice', title: '秒杀价格', align: 'center', width: 150},
                 {field: 'createTime', title: '添加日期', align: 'center', width: 150},
                 {field: 'checkTime', title: '审核日期', align: 'center', width: 150},
-                {field: 'status', title: '审核状态', align: 'center', width: 150,formatter:function(value,row,index){
-                        if(value==1){
+                {
+                    field: 'status',
+                    title: '审核状态',
+                    align: 'center',
+                    width: 150,
+                    formatter: function (value, row, index) {
+                        if (value == 1) {
                             return "已审核";
-                        }else if(value==2){
+                        } else if (value == 2) {
                             return "审核中";
-                        }else if(value==3){
+                        } else if (value == 3) {
                             return "未审核";
                         }
-                }},
+                    }
+                },
                 {field: 'startTime', title: '开始时间', align: 'center', width: 150},
                 {field: 'endTime', title: '结束时间', align: 'center', width: 150},
                 {field: 'num', title: '秒杀商品数', align: 'center', width: 150},
                 {field: 'stockCount', title: '剩余库存数', align: 'center', width: 150},
                 {field: 'introduction', title: '描述', align: 'center', width: 150},
                 {field: 'tixingshu', title: '提醒数', align: 'center', width: 150},
-                {field:'zuo',title:'操作',formatter:function(value,row,index){
-                        return '<button type="button" class="btn btn-default" title="删除用户" onclick="getDelete('+row.id+')" >删除用户</button>' +
-                            '<button type="button" class="btn btn-default" title="修改用户" onclick="getUpdate('+row.id+')" data-toggle="modal" data-target="#editModal"><i class="fa fa-file-o"></i>修改用户</button>' ;
-                    }}
+                {
+                    field: 'zuo', title: '操作', formatter: function (value, row, index) {
+                        return '<button type="button" class="btn btn-default" title="删除用户" onclick="getDelete(' + row.id + ')" >删除用户</button>' +
+                            '<button type="button" class="btn btn-default" title="修改用户" onclick="getUpdate(' + row.id + ')" data-toggle="modal" data-target="#editModal"><i class="fa fa-file-o"></i>修改用户</button>';
+                    }
+                }
             ],
-            pagination:true,
-            pageSize:5,
-            PageList:[5,10,15,20,25]
+            pagination: true,
+            pageSize: 5,
+            PageList: [5, 10, 15, 20, 25]
         });
     }
-    function getDelete(id){
+
+    function getDelete(id) {
         alert(id);
         $.ajax({
-            url:"/deleteSeckill",
-            type:"post",
-            data:{id:id},
-            success:function(){
+            url: "/deleteSeckill",
+            type: "post",
+            data: {id: id},
+            success: function () {
                 $("#after_table").bootstrapTable("refresh");
             }
         });
     }
+
     function getAdd() {
         $.ajax({
             url: "/addSeckill",
@@ -204,7 +239,8 @@
             }
         })
     }
-    function getUpdate(id){
+
+    function getUpdate(id) {
         $.ajax({
             url: "/updateSeckill",
             type: "post",

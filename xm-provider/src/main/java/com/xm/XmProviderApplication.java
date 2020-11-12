@@ -8,9 +8,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableEurekaClient
 public class XmProviderApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(XmProviderApplication.class, args);
-		System.out.println("xmprovider成功");
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(XmProviderApplication.class, args);
+        System.out.println("xmprovider成功");
+    }
 
 }

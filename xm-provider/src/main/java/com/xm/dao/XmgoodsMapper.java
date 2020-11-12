@@ -4,6 +4,7 @@ import com.xm.entity.xmgoods;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+
 @Mapper
 public interface XmgoodsMapper {
     int deleteByPrimaryKey(Integer id);
@@ -21,4 +22,6 @@ public interface XmgoodsMapper {
     List<xmgoods> find(xmgoods goods);
 
     xmgoods select(Integer id);
+
+    List<xmgoods> selectqq(String[] oid);
 }

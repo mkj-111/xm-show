@@ -14,6 +14,7 @@ public class RedisConfiguration {
     /**
      * 自定义RedisTemplate的bean，不使用默认的RedisTemplate
      * redisTemplate 默认序列化使用的jdkSerializeable, 存储二进制字节码, 所以自定义序列化类
+     *
      * @param redisConnectionFactory
      * @return
      */
