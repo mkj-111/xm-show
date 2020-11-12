@@ -97,6 +97,9 @@ public class jumpcontroller {
     @RequestMapping("/hchars")
     public  String Hchars(){
 
+<<<<<<< HEAD
         return  "admin/highcharts";
     }
+=======
+>>>>>>> d70451d6035340162ea84368b721f13e7dd6360b
 }
