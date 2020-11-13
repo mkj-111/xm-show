@@ -3,7 +3,7 @@ package com.xm.entity;
 import java.io.Serializable;
 import java.util.List;
 
-public class PageResult implements Serializable{
+public class PageResult implements Serializable {
 
     private Long total;
     private List rows;

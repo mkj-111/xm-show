@@ -56,69 +56,69 @@
                             <td><input class="form-control" placeholder="产品名称" name="goodsName" id="qname"></td>
 
                         </tr>
-                            <tr>
-                                <td>颜色</td>
-                                <td><select name="goodsColorId" id="skinSelect">
-                                    <option value="0">请选择</option>
-                                    <option value="1">陶瓷黑</option>
-                                    <option value="2">透明版</option>
-                                    <option value="3">亮银版</option>
-                                    <option value="4">月幕白</option>
-                                    <option value="5">极夜黑</option>
-                                    <option value="6">薄荷绿</option>
-                                </select></td>
-                            </tr>
+                        <tr>
+                            <td>颜色</td>
+                            <td><select name="goodsColorId" id="skinSelect">
+                                <option value="0">请选择</option>
+                                <option value="1">陶瓷黑</option>
+                                <option value="2">透明版</option>
+                                <option value="3">亮银版</option>
+                                <option value="4">月幕白</option>
+                                <option value="5">极夜黑</option>
+                                <option value="6">薄荷绿</option>
+                            </select></td>
+                        </tr>
                         <tr>
                             <td>版本</td>
-                              <td>
-                                  <select name="goodsVersionId">
-                                      <option value="0">请选择</option>
-                                      <option value="1">8GB+256GB</option>
-                                      <option value="2">8GB+128GB</option>
-                                      <option value="3">12GB+256GB</option>
-                                      <option value="4">16GB+521GB</option>
-                                      <option value="5">8GB+256GB</option>
-                                      <option value="6">8GB+128GB</option>
-                                  </select>
-                              </td>
+                            <td>
+                                <select name="goodsVersionId">
+                                    <option value="0">请选择</option>
+                                    <option value="1">8GB+256GB</option>
+                                    <option value="2">8GB+128GB</option>
+                                    <option value="3">12GB+256GB</option>
+                                    <option value="4">16GB+521GB</option>
+                                    <option value="5">8GB+256GB</option>
+                                    <option value="6">8GB+128GB</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td>分类</td>
                             <td><select name="goodsTypeid" id="leixing">
                                 <option value="0">请选择</option>
-                                <option value="1">手机  电话卡</option>
-                                <option value="2">电视  盒子</option>
-                                <option value="3">笔记本  显示器</option>
-                                <option value="4">家电  插线板</option>
-                                <option value="5">出行  穿戴</option>
-                                <option value="6">智能  路由器</option>
-                                <option value="7">电源  配件</option>
-                                <option value="8">健康  儿童</option>
-                                <option value="9">耳机  音箱</option>
-                                <option value="10">生活  箱包</option>
+                                <option value="1">手机 电话卡</option>
+                                <option value="2">电视 盒子</option>
+                                <option value="3">笔记本 显示器</option>
+                                <option value="4">家电 插线板</option>
+                                <option value="5">出行 穿戴</option>
+                                <option value="6">智能 路由器</option>
+                                <option value="7">电源 配件</option>
+                                <option value="8">健康 儿童</option>
+                                <option value="9">耳机 音箱</option>
+                                <option value="10">生活 箱包</option>
                             </select></td>
                         </tr>
                         <tr>
                             <td>数量</td>
                             <td><input class="form-control" placeholder="数量" name="goodsNum" id="quantity"></td>
                         </tr>
-                    <!--  <tr>
-                            <td>图片</td>
-                            <td>图片：<input type="file" name="goodsImg" /><br/>
+                        <!--  <tr>
+                                <td>图片</td>
+                                <td>图片：<input type="file" name="goodsImg" /><br/>
 
-                                <input type="submit" value="上传" />
+                                    <input type="submit" value="上传" />
+                                </td>
+                            </tr>-->
+
+                        <tr>
+                            <td>时间</td>
+                            <td><input type="date" name="goodsDate" id="riqi">
                             </td>
-                        </tr>-->
-
-                       <tr>
-                              <td>时间</td>
-                              <td><input  type="date" name="goodsDate" id="riqi">
-                              </td>
-                          </tr>
+                        </tr>
                         <tr>
                             <td>状态</td>
-                            <td>  <input type="radio" name="goodsStatus" value="1" >在售
-                                <input type="radio" name="goodsStatus" value="2" >下架
+                            <td><input type="radio" name="goodsStatus" value="1">在售
+                                <input type="radio" name="goodsStatus" value="2">下架
                             </td>
                         </tr>
                     </table>
@@ -132,10 +132,50 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="editModalq" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h3 id="myModalLabel">评论</h3>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="qq">
+                    <input type="hidden" name="id" id="cc">
+                    <table class="table table-bordered table-striped" width="800px">
+                        <tr>
+                            <td>评论</td>
+                            <td><input class="form-control" placeholder="评论" name="info" id="pinfo"/></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" onclick="javascript:pp()">保存
+                </button>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <table class="table" id="myTable"></table>
 </body>
 <script type="text/javascript">
+    //评论
+    function pp() {
+        var p = $("#pinfo").val();
+        var id = $("#cc").val();
+        alert(id)
+        $.ajax({
+            url: "/ping/insertq",
+            data: {oid: id, info: p},
+            success: function () {
+                alert("成功")
+            }
+        })
+    }
+
     $(function () {
         initTable()
     })
@@ -143,7 +183,7 @@
     function cha() {
         $("#myTable").bootstrapTable("refresh", {
             query: {
-                goodsName:$("#name").val(),
+                goodsName: $("#name").val(),
             }
         })
     }
@@ -154,23 +194,40 @@
             columns: [
                 {checkbox: true},
                 {field: 'id', title: '产品编号', align: 'center', width: 150},
-                {field: 'info', title: '产品名称', align: 'center', width: 150,formatter:function(value, rows, index) {
-                      var str="";
-                         str3=rows.goodsName;
-                         str1=rows.versionName;
-                         str2=rows.colorName;
+                {
+                    field: 'info',
+                    title: '产品名称',
+                    align: 'center',
+                    width: 150,
+                    formatter: function (value, rows, index) {
+                        var str = "";
+                        str3 = rows.goodsName;
+                        str1 = rows.versionName;
+                        str2 = rows.colorName;
 
-                         str+=str3+str2+str1;
-                    return str;
-                    }},
-                {field: 'goodsImg', title: '浏览', align: 'center', width: 150,formatter:function(value, rows, index) {
-                        return "<img style='width:50px;height:50px' src='/upload/"+value+"'>";
-                    }},
+                        str += str3 + str2 + str1;
+                        return str;
+                    }
+                },
+                {
+                    field: 'goodsImg',
+                    title: '浏览',
+                    align: 'center',
+                    width: 150,
+                    formatter: function (value, rows, index) {
+                        return "<img style='width:50px;height:50px' src='/upload/" + value + "'>";
+                    }
+                },
                 {field: 'goodsPrice', title: '产品现价', align: 'center', width: 150},
                 {field: 'text', title: '分类', align: 'center', width: 150},
                 {field: 'goodsNum', title: '数量', align: 'center', width: 150},
                 {field: 'goodsDate', title: '添加日期', align: 'center', width: 150},
-                {field: 'goodsStatus', title: '状态', align: 'center', width: 150,formatter:function(value, rows, index) {
+                {
+                    field: 'goodsStatus',
+                    title: '状态',
+                    align: 'center',
+                    width: 150,
+                    formatter: function (value, rows, index) {
                         var str = "";
                         if (value == 1) {
                             str += "在售";
@@ -179,22 +236,63 @@
                             str += "下架";
                         }
                         return str;
-                    }},
-                {field: 'tool', title: '操作', align: 'center', width: 150,
+                    }
+                },
+                {
+                    field: 'tool', title: '操作', align: 'center', width: 150,
                     formatter: function (value, rows, index) {
                         var str = "";
                         str += "<a href='javascript:deletePatientById(" + rows.id + ")'>删除&nbsp;&nbsp;</a>";
                         str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' data-target='#editModal' onclick='javascript:xiugai(" + rows.id + ")'>修改</button>";
+                        str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' data-target='#editModalq' onclick='javascript:pinglun(" + rows.id + ")'>评论</button>";
+
+                       if(rows.goodsStatus==2){
+                           str += "<button type='button'  onclick='javascript:shou(" + rows.id + ")'>在售</button>";
+                       }
+                       if(rows.goodsStatus==1){
+                           str += "<button type='button'  onclick='javascript:xiajia(" + rows.id + ")'>下架</button>";
+                       }
                         return str;
                     }
                 },
             ],
-           /* pagination: true,
+            pagination: true,
             pageSize: 10,
-            pageList: [10, 20, 30],*/
+            pageList: [10, 20, 30],
         });
     }
+    function xiajia(id){
+        $.ajax({
+            url:"/goods/xiajia",
+            data:{id:id},
+            type:"post",
+            success:function(){
+                $("#myTable").bootstrapTable("refresh");
+            }
+        })
+    }
 
+ function shou(id){
+         $.ajax({
+             url:"/goods/status",
+             data:{id:id},
+             type:"post",
+             success:function(){
+                 $("#myTable").bootstrapTable("refresh");
+             }
+         })
+ }
+    function pinglun(id) {
+        $.ajax({
+            url: "/goods/huixian",
+            type: "post",
+            data: {id: id},
+            success: function (data) {
+                console.log(data)
+                $("#cc").val(data.id);
+            }
+        })
+    }
     function deletePatientById(id) {
         $.ajax({
             url: "/goods/delete",
@@ -220,14 +318,15 @@
                 $("#riqi").val(data.goodsDate)
 
                 $("#quantity").val(data.goodsNum);
-                if(data.goodsStatus == 1){
-                    $("input[type=radio][name='goodsStatus'][value='1']").attr("checked",'checked');
-                } else if(data.goodsStatus == 2){
-                    $("input[type=radio][name='goodsStatus'][value='2']").attr("checked",'checked');
+                if (data.goodsStatus == 1) {
+                    $("input[type=radio][name='goodsStatus'][value='1']").attr("checked", 'checked');
+                } else if (data.goodsStatus == 2) {
+                    $("input[type=radio][name='goodsStatus'][value='2']").attr("checked", 'checked');
                 }
             }
         })
     }
+
     function add() {
         $.ajax({
             url: "/goods/add",
@@ -240,25 +339,6 @@
             }
         })
     }
-    $("#uploadImg").uploadify({
-        'swf': '../js/uploadify/uploadify.swf',
-        'uploader': '../goods/tu',
-        'queueID': 'fileQueue',
-        'fileObjName' : 'imgfile',
-        'buttonText': '上传头像',
-        'auto': true,
-        'multi': true,
-        'removeCompleted': true,
-        'fileExt': '*.jpg;*.gif;*.png',
-        'cancelImg': '../js/uploadify/uploadify-cancel.png',
-        'removeTimeout' : 1,
-        'uploadLimit':  -1,
-        'fileTypeExts': '*.jpg;*.png',
-        'onUploadSuccess':function(file,data,response){
-            var imgurl = "http://<%= request.getServerName()%>request.getServerPort()%>../upload:<%=/"+eval(data);
-            $("#add_img").attr("src",imgurl);
-            $('#hideImg').val(eval(data));
-        }
-    });
+
 </script>
 </html>

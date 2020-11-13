@@ -20,22 +20,22 @@ public class SeckillGoodsController {
 
 
     @RequestMapping("findSeckill")
-    public List<SeckillGoods> findSeckill(){
+    public List<SeckillGoods> findSeckill() {
         return seckillGoodsService.findSeckill();
     }
 
     @RequestMapping("addSeckill")
-    public void addSeckill(@RequestBody SeckillGoods seckill){
+    public void addSeckill(@RequestBody SeckillGoods seckill) {
         seckillGoodsService.addSeckill(seckill);
     }
 
     @RequestMapping("deleteSeckill")
-    public void deleteSeckill(@RequestParam Integer id){
+    public void deleteSeckill(@RequestParam Integer id) {
         seckillGoodsService.deleteSeckill(id);
     }
 
     @RequestMapping("updateSeckill")
-    public SeckillGoods updateSeckill(@RequestParam Integer id){
+    public SeckillGoods updateSeckill(@RequestParam Integer id) {
         return seckillGoodsService.updateSeckill(id);
     }
 }

@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-@FeignClient(value="xmprovider")
+
+@FeignClient(value = "xmprovider")
 public interface GoodsService {
     @RequestMapping("find")
     public List<xmgoods> find(@RequestBody xmgoods goods);
@@ -17,10 +18,15 @@ public interface GoodsService {
 
 
     @RequestMapping("add")
-    public void add(@RequestBody xmgoods po) ;
+    public void add(@RequestBody xmgoods po);
 
 
     @RequestMapping("select")
     public xmgoods select(@RequestParam Integer id);
 
+    @RequestMapping("status")
+    public xmgoods status(@RequestParam Integer id);
+
+    @RequestMapping("xiajia")
+    public xmgoods xiajia(@RequestParam Integer id);
 }

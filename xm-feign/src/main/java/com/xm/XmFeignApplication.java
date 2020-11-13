@@ -11,9 +11,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class XmFeignApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
-		SpringApplication.run(XmFeignApplication.class, args);
-		System.out.println("xmfeign成功");
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(XmFeignApplication.class, args);
+        System.out.println("xmfeign成功");
+    }
 
 }

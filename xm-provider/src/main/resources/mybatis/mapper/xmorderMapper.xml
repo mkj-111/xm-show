@@ -1,114 +1,115 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xm.dao.xmorderMapper" >
-  <resultMap id="BaseResultMap" type="com.xm.entity.xmorder" >
-    <id column="order_id" property="orderId" jdbcType="INTEGER" />
-    <result column="order_number" property="orderNumber" jdbcType="INTEGER" />
-    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
-    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
-    <result column="order_price" property="orderPrice" jdbcType="DECIMAL" />
-    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
-    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="order_info" property="orderInfo" jdbcType="VARCHAR" />
-    <result column="oreder_date" property="orderDate" jdbcType="DATE" />
-    <result column="delivery_time" property="deliverytime" jdbcType="DATE" />
-  </resultMap>
-  <select id="select" resultMap="BaseResultMap">
+<mapper namespace="com.xm.dao.xmorderMapper">
+    <resultMap id="BaseResultMap" type="com.xm.entity.xmorder">
+        <id column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="order_number" property="orderNumber" jdbcType="INTEGER"/>
+        <result column="order_status" property="orderStatus" jdbcType="INTEGER"/>
+        <result column="pay_status" property="payStatus" jdbcType="INTEGER"/>
+        <result column="order_price" property="orderPrice" jdbcType="DECIMAL"/>
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="goods_num" property="goodsNum" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="order_info" property="orderInfo" jdbcType="VARCHAR"/>
+        <result column="oreder_date" property="orderDate" jdbcType="DATE"/>
+        <result column="delivery_time" property="deliverytime" jdbcType="DATE"/>
+    </resultMap>
+    <select id="select" resultMap="BaseResultMap">
 
-      select * from xm_order where order_id=#{id}
-  </select>
-  <select id="find" resultMap="BaseResultMap">
-     select * from xm_order <include refid="sqldq"></include>
-  </select>
-  <sql id="sqldq">
-    <where>
-      <if test="orderId!=null and orderId!=''">
-        and  order_id=#{orderId}
-      </if>
-    </where>
+        select * from xm_order where order_id=#{id}
+    </select>
+    <select id="find" resultMap="BaseResultMap">
+        select * from xm_order
+        <include refid="sqldq"></include>
+    </select>
+    <sql id="sqldq">
+        <where>
+            <if test="orderId!=null and orderId!=''">
+                and order_id=#{orderId}
+            </if>
+        </where>
 
-  </sql>
-  <insert id="insert" parameterType="com.xm.entity.xmorder">
-    insert into xm_order (order_id, order_number, order_status,
-      pay_status, order_price, goods_name,
-      goods_num, user_id, order_info,
-      oreder_date, delivery_time)
-    values (#{orderId,jdbcType=INTEGER}, #{orderNumber,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER},
-      #{payStatus,jdbcType=INTEGER}, #{orderPrice,jdbcType=DECIMAL}, #{goodsName,jdbcType=VARCHAR},
-      #{goodsNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderInfo,jdbcType=VARCHAR},
-     #{orderDate,jdbcType=TIMESTAMP}, SYSDATE())
-  </insert>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from xm_order
-    where order_id = #{orderId,jdbcType=INTEGER}
-  </delete>
-  <select id="finddoctorBean" resultMap="BaseResultMap">
-    select * from xm_order
-  </select>
+    </sql>
+    <insert id="insert" parameterType="com.xm.entity.xmorder">
+        insert into xm_order (order_id, order_number, order_status,
+        pay_status, order_price, goods_name,
+        goods_num, user_id, order_info,
+        oreder_date, delivery_time)
+        values (#{orderId,jdbcType=INTEGER}, #{orderNumber,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER},
+        #{payStatus,jdbcType=INTEGER}, #{orderPrice,jdbcType=DECIMAL}, #{goodsName,jdbcType=VARCHAR},
+        #{goodsNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderInfo,jdbcType=VARCHAR},
+        #{orderDate,jdbcType=TIMESTAMP}, SYSDATE())
+    </insert>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from xm_order
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </delete>
+    <select id="finddoctorBean" resultMap="BaseResultMap">
+        select * from xm_order
+    </select>
 
-  <insert id="addUser" parameterType="com.xm.entity.xmorder" >
-    insert into xm_order (order_id, order_number, order_status,
-      pay_status, order_price, goods_name,
-      goods_num, user_id, order_info,
-      oreder_date, delivery_time)
-    values (#{orderId,jdbcType=INTEGER}, #{orderNumber,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER},
-      #{payStatus,jdbcType=INTEGER}, #{orderPrice,jdbcType=DECIMAL}, #{goodsName,jdbcType=VARCHAR},
-      #{goodsNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderInfo,jdbcType=VARCHAR},
-     #{orderDate,jdbcType=TIMESTAMP}, SYSDATE())
-  </insert>
-  <select id="selectUser" resultType="java.lang.Integer">
-      select count(*) from xm_order where goods_name=#{name}
-  </select>
+    <insert id="addUser" parameterType="com.xm.entity.xmorder">
+        insert into xm_order (order_id, order_number, order_status,
+        pay_status, order_price, goods_name,
+        goods_num, user_id, order_info,
+        oreder_date, delivery_time)
+        values (#{orderId,jdbcType=INTEGER}, #{orderNumber,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER},
+        #{payStatus,jdbcType=INTEGER}, #{orderPrice,jdbcType=DECIMAL}, #{goodsName,jdbcType=VARCHAR},
+        #{goodsNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderInfo,jdbcType=VARCHAR},
+        #{orderDate,jdbcType=TIMESTAMP}, SYSDATE())
+    </insert>
+    <select id="selectUser" resultType="java.lang.Integer">
+        select count(*) from xm_order where goods_name=#{name}
+    </select>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.xm.entity.xmorder" >
-    update xm_order
-    <set >
-      <if test="orderNumber != null" >
-        order_number = #{orderNumber,jdbcType=INTEGER},
-      </if>
-      <if test="orderStatus != null" >
+    <update id="updateByPrimaryKeySelective" parameterType="com.xm.entity.xmorder">
+        update xm_order
+        <set>
+            <if test="orderNumber != null">
+                order_number = #{orderNumber,jdbcType=INTEGER},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus,jdbcType=INTEGER},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus,jdbcType=INTEGER},
+            </if>
+            <if test="orderPrice != null">
+                order_price = #{orderPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="goodsName != null">
+                goods_name = #{goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsNum != null">
+                goods_num = #{goodsNum,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="orderInfo != null">
+                order_info = #{orderInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="orederDate != null">
+                oreder_date = #{orederDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryTime != null">
+                delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xm.entity.xmorder">
+        update xm_order
+        set order_number = #{orderNumber,jdbcType=INTEGER},
         order_status = #{orderStatus,jdbcType=INTEGER},
-      </if>
-      <if test="payStatus != null" >
         pay_status = #{payStatus,jdbcType=INTEGER},
-      </if>
-      <if test="orderPrice != null" >
         order_price = #{orderPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="goodsName != null" >
         goods_name = #{goodsName,jdbcType=VARCHAR},
-      </if>
-      <if test="goodsNum != null" >
         goods_num = #{goodsNum,jdbcType=INTEGER},
-      </if>
-      <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="orderInfo != null" >
         order_info = #{orderInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="orederDate != null" >
         oreder_date = #{orederDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="deliveryTime != null" >
-        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where order_id = #{orderId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xm.entity.xmorder" >
-    update xm_order
-    set order_number = #{orderNumber,jdbcType=INTEGER},
-      order_status = #{orderStatus,jdbcType=INTEGER},
-      pay_status = #{payStatus,jdbcType=INTEGER},
-      order_price = #{orderPrice,jdbcType=DECIMAL},
-      goods_name = #{goodsName,jdbcType=VARCHAR},
-      goods_num = #{goodsNum,jdbcType=INTEGER},
-      user_id = #{userId,jdbcType=INTEGER},
-      order_info = #{orderInfo,jdbcType=VARCHAR},
-      oreder_date = #{orederDate,jdbcType=TIMESTAMP},
-      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP}
-    where order_id = #{orderId,jdbcType=INTEGER}
-  </update>
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP}
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </update>
 </mapper>

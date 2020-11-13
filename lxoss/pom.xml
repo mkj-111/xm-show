@@ -8,11 +8,17 @@
 		<version>2.3.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+<<<<<<< HEAD
 
 	<groupId>com.xm</groupId>
 	<artifactId>lxoss</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+=======
+	<groupId>com.xm</groupId>
+	<artifactId>lxoss</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+>>>>>>> 0b55d1605262c5df422ef7732765eb51b6ff89e9
 	<name>lxoss</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -27,6 +33,15 @@
 		</dependency>
 
 		<dependency>
+<<<<<<< HEAD
+=======
+			<groupId>com.xm</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+>>>>>>> 0b55d1605262c5df422ef7732765eb51b6ff89e9
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -37,6 +52,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+<<<<<<< HEAD
 		<dependency>
 			<groupId>com.xm</groupId>
 			<artifactId>common</artifactId>
@@ -61,6 +77,8 @@
 			<version>2.2.5.RELEASE</version>
 			<scope>compile</scope>
 		</dependency>
+=======
+>>>>>>> 0b55d1605262c5df422ef7732765eb51b6ff89e9
 	</dependencies>
 
 	<build>

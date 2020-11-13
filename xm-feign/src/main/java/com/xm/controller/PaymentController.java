@@ -25,19 +25,19 @@ public class PaymentController {
 
     @RequestMapping("findpay")
     @ResponseBody
-    public List<Payment> findPay(){
-        List<Payment> paymentList= (List<Payment>) redisUtil.get(RedisConstant.PAY_LIST_KEY);
-        if(paymentList==null || paymentList.isEmpty()){
-            paymentList=paymentService.findPay();
-            redisUtil.set(RedisConstant.PAY_LIST_KEY,paymentList);
-            redisUtil.expire(RedisConstant.PAY_LIST_KEY,60);
+    public List<Payment> findPay() {
+        List<Payment> paymentList = (List<Payment>) redisUtil.get(RedisConstant.PAY_LIST_KEY);
+        if (paymentList == null || paymentList.isEmpty()) {
+            paymentList = paymentService.findPay();
+            redisUtil.set(RedisConstant.PAY_LIST_KEY, paymentList);
+            redisUtil.expire(RedisConstant.PAY_LIST_KEY, 60);
         }
         return paymentList;
     }
 
     @RequestMapping("deletepay")
     @ResponseBody
-    public void delete(@RequestParam Integer id){
+    public void delete(@RequestParam Integer id) {
         redisUtil.del(RedisConstant.PAY_LIST_KEY);
         paymentService.delete(id);
     }

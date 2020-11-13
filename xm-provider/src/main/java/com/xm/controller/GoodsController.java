@@ -12,17 +12,18 @@ import java.util.List;
 @RestController
 public class GoodsController {
 
-@Resource
+    @Resource
     private com.xm.service.GoodsService goodsService;
 
-   @RequestMapping("find")
-    public List<xmgoods>find(@RequestBody xmgoods goods){
-    return goodsService.find(goods);
-}
+    @RequestMapping("find")
+    public List<xmgoods> find(@RequestBody xmgoods goods) {
+        return goodsService.find(goods);
+    }
+
     @RequestMapping("delete")
     public void delete(@RequestParam Integer id) {
 
-    goodsService.delete(id);
+        goodsService.delete(id);
     }
 
     @RequestMapping("add")
@@ -35,6 +36,15 @@ public class GoodsController {
     public xmgoods select(@RequestParam Integer id) {
 
         return goodsService.select(id);
+    }
+
+    @RequestMapping("status")
+    public xmgoods status(@RequestParam Integer id){
+        return goodsService.status(id);
+    }
+    @RequestMapping("xiajia")
+    public xmgoods xiajia(@RequestParam Integer id){
+        return goodsService.xiajia(id);
     }
 
 }

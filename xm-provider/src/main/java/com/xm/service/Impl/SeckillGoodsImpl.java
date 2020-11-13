@@ -21,9 +21,9 @@ public class SeckillGoodsImpl implements SeckillGoodsService {
 
     @Override
     public void addSeckill(SeckillGoods seckill) {
-        if(seckill.getId()!=null){
+        if (seckill.getId() != null) {
             seckillGoodsMapper.updateGoods(seckill);
-        }else{
+        } else {
             seckillGoodsMapper.addSeckill(seckill);
         }
     }

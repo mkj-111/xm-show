@@ -11,7 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-@FeignClient(value="xmprovider")
+
+@FeignClient(value = "xmprovider")
 public interface OrderService {
     @RequestMapping("findq")
     public List<xmorder> find(@RequestBody xmorder order);
@@ -20,18 +21,18 @@ public interface OrderService {
     public void delete(@RequestParam Integer id);
 
 
-
     @RequestMapping("addq")
     public void add(@RequestBody xmorder po);
 
 
-
     @RequestMapping("selectq")
     public xmorder select(@RequestParam Integer id);
+
     //导出
     @RequestMapping("exportBank")
     @ResponseBody
     public void exportBank(HttpServletResponse response);
+
     @RequestMapping("/importstudent")
     @ResponseBody
     public String excelImport(@RequestParam MultipartFile[] file, HttpSession session);

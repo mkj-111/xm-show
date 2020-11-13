@@ -19,19 +19,21 @@ public class RankController {
 
     /**
      * 等级查询
+     *
      * @return
      */
     @RequestMapping("findyyb")
-    public List<Rank> find(){
+    public List<Rank> find() {
         return rankService.find();
     }
 
     /**
      * 升级
+     *
      * @param id
      */
     @RequestMapping("upgradeyyb")
-    public void upgrade(@RequestParam Integer id){
+    public void upgrade(@RequestParam Integer id) {
         rankService.upgrade(id);
     }
 }

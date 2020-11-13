@@ -23,17 +23,16 @@ public class usercontroller {
     public SysUser selectUserInfoByCode(@RequestParam String userCode) {
         return UserService.selectUserInfoByCode(userCode);
     }
+
     @RequestMapping("/selectTreeList")
-    public List<xmtree> selectTreeList(@RequestParam Integer userId){
+    public List<xmtree> selectTreeList(@RequestParam Integer userId) {
         return UserService.selectTreeList(userId);
     }
 
     @RequestMapping("/selectPowerKeyList")
-    public List<String> selectPowerKeyList(@RequestParam Integer userId){
+    public List<String> selectPowerKeyList(@RequestParam Integer userId) {
         return UserService.selectPowerKeyList(userId);
     }
-
-
 
 
 }

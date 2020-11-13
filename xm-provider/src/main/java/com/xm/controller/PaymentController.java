@@ -17,15 +17,16 @@ public class PaymentController {
 
     /**
      * 查询
+     *
      * @return
      */
     @RequestMapping("findpay")
-    public List<Payment> findPay(){
+    public List<Payment> findPay() {
         return paymentService.find();
     }
 
     @RequestMapping("deletepay")
-    public void delete(@RequestParam Integer id){
+    public void delete(@RequestParam Integer id) {
         paymentService.delete(id);
     }
 }

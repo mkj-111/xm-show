@@ -26,6 +26,7 @@ public class jumpcontroller {
         return "main";
     }
 
+
     /*于英彬*/
     //跳转会员列表页面
     @RequestMapping("member")
@@ -62,6 +63,7 @@ public class jumpcontroller {
     public String first() {
         return "first";
     }
+
     //跳转欢迎页面
     @RequestMapping("second")
     public String second() {
@@ -101,4 +103,12 @@ public class jumpcontroller {
     public String content() {
         return "admin/Content";
     }
+
+    @RequestMapping("/hchars")
+    public  String Hchars(){
+
+
+        return  "admin/highcharts";
+    }
+
 }

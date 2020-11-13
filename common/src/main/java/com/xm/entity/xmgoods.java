@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+
 @Data
 public class xmgoods {
     private Integer id;
@@ -39,6 +40,7 @@ public class xmgoods {
     private String colorName;
     private Long goodsPrice;
     private String text;
+
     public Integer getId() {
         return id;
     }

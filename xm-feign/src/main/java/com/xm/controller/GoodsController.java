@@ -26,12 +26,12 @@ public class GoodsController {
 
     @RequestMapping("find")
     @ResponseBody
-    public List<xmgoods>find(xmgoods goods){
-        List<xmgoods> goodsList= (List<xmgoods>) redisUtil.get(RedisConstant.GOODS_LIST_KEY);
-        if(goodsList==null || goodsList.isEmpty()){
-            goodsList=goodsService.find(goods);
-            redisUtil.set(RedisConstant.GOODS_LIST_KEY,goodsList);
-            redisUtil.expire(RedisConstant.GOODS_LIST_KEY,60);
+    public List<xmgoods> find(xmgoods goods) {
+        List<xmgoods> goodsList = (List<xmgoods>) redisUtil.get(RedisConstant.GOODS_LIST_KEY);
+        if (goodsList == null || goodsList.isEmpty()) {
+            goodsList = goodsService.find(goods);
+            redisUtil.set(RedisConstant.GOODS_LIST_KEY, goodsList);
+            redisUtil.expire(RedisConstant.GOODS_LIST_KEY, 60);
         }
         return goodsService.find(goods);
     }
@@ -53,12 +53,19 @@ public class GoodsController {
 
     @RequestMapping("huixian")
     @ResponseBody
-    public xmgoods selectId(Integer id){
+    public xmgoods selectId(Integer id) {
         redisUtil.del(RedisConstant.GOODS_LIST_KEY);
         return goodsService.select(id);
     }
-
-
-
+    @RequestMapping("status")
+    @ResponseBody
+    public xmgoods status(Integer id){
+        return goodsService.status(id);
+    }
+    @RequestMapping("xiajia")
+    @ResponseBody
+    public xmgoods xiajia(Integer id){
+        return goodsService.xiajia(id);
+    }
 
 }

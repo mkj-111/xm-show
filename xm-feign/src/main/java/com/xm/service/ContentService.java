@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(value="xmprovider")
+@FeignClient(value = "xmprovider")
 public interface ContentService {
     @RequestMapping("findll")
     public List<xmcontent> findw();

@@ -13,6 +13,7 @@ public class RankServiceImpl implements RankService {
 
     @Resource
     private RankMapper rankMapper;
+
     @Override
     public List<Rank> find() {
         return rankMapper.find();

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xm.dao.UserMapper" >
+<mapper namespace="com.xm.dao.UserMapper">
 
     <select id="selectUserInfoByCode" parameterType="string" resultType="com.xm.entity.SysUser">
         select * from sys_user where usercode=#{userCode}
     </select>
 
-    <select id="selectTreeList" resultType="com.xm.entity.xmtree" >
+    <select id="selectTreeList" resultType="com.xm.entity.xmtree">
         select sp.id as id,sp.name as text,sp.url as href,sp.parentid as pid from
         sys_user_role sur,
         sys_role_permission srp,

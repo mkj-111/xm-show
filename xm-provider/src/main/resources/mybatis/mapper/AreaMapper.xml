@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xm.dao.AreaMapper">
+    <resultMap id="BaseResultMap" type="com.xm.entity.Area">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="createdDate" property="createddate" jdbcType="TIMESTAMP"/>
+        <result column="lastModifiedDate" property="lastmodifieddate" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+        <result column="orders" property="orders" jdbcType="INTEGER"/>
+        <result column="grade" property="grade" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="treePath" property="treepath" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+    </resultMap>
+    <select id="areafindll" resultMap="BaseResultMap">
+        select * from area where parent_id=0
+    </select>
+
+
+    <resultMap id="ResultMapWithBLOBs" type="com.xm.entity.Area" extends="BaseResultMap">
+        <result column="fullName" property="fullname" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, createdDate, lastModifiedDate, version, orders, grade, name, treePath, parent_id
+    </sql>
+    <sql id="Blob_Column_List">
+        fullName
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from area
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from area
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.xm.entity.Area">
+        insert into area (id, createdDate, lastModifiedDate,
+        version, orders, grade,
+        name, treePath, parent_id,
+        fullName)
+        values (#{id,jdbcType=BIGINT}, #{createddate,jdbcType=TIMESTAMP}, #{lastmodifieddate,jdbcType=TIMESTAMP},
+        #{version,jdbcType=BIGINT}, #{orders,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER},
+        #{name,jdbcType=VARCHAR}, #{treepath,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT},
+        #{fullname,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.xm.entity.Area">
+        insert into area
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createddate != null">
+                createdDate,
+            </if>
+            <if test="lastmodifieddate != null">
+                lastModifiedDate,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="orders != null">
+                orders,
+            </if>
+            <if test="grade != null">
+                grade,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="treepath != null">
+                treePath,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="fullname != null">
+                fullName,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="createddate != null">
+                #{createddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastmodifieddate != null">
+                #{lastmodifieddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=BIGINT},
+            </if>
+            <if test="orders != null">
+                #{orders,jdbcType=INTEGER},
+            </if>
+            <if test="grade != null">
+                #{grade,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="treepath != null">
+                #{treepath,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="fullname != null">
+                #{fullname,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xm.entity.Area">
+        update area
+        <set>
+            <if test="createddate != null">
+                createdDate = #{createddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastmodifieddate != null">
+                lastModifiedDate = #{lastmodifieddate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=BIGINT},
+            </if>
+            <if test="orders != null">
+                orders = #{orders,jdbcType=INTEGER},
+            </if>
+            <if test="grade != null">
+                grade = #{grade,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="treepath != null">
+                treePath = #{treepath,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="fullname != null">
+                fullName = #{fullname,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xm.entity.Area">
+        update area
+        set createdDate = #{createddate,jdbcType=TIMESTAMP},
+        lastModifiedDate = #{lastmodifieddate,jdbcType=TIMESTAMP},
+        version = #{version,jdbcType=BIGINT},
+        orders = #{orders,jdbcType=INTEGER},
+        grade = #{grade,jdbcType=INTEGER},
+        name = #{name,jdbcType=VARCHAR},
+        treePath = #{treepath,jdbcType=VARCHAR},
+        parent_id = #{parentId,jdbcType=BIGINT},
+        fullName = #{fullname,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xm.entity.Area">
+        update area
+        set createdDate = #{createddate,jdbcType=TIMESTAMP},
+        lastModifiedDate = #{lastmodifieddate,jdbcType=TIMESTAMP},
+        version = #{version,jdbcType=BIGINT},
+        orders = #{orders,jdbcType=INTEGER},
+        grade = #{grade,jdbcType=INTEGER},
+        name = #{name,jdbcType=VARCHAR},
+        treePath = #{treepath,jdbcType=VARCHAR},
+        parent_id = #{parentId,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

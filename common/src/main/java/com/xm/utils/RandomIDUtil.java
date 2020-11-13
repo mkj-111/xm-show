@@ -33,7 +33,6 @@ public class RandomIDUtil {
     private long lastStmp = -1L;// 上一次时间戳
 
     /**
-     *
      * @param datacenterId
      * @param machineId
      */
