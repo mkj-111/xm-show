@@ -20,8 +20,12 @@
         <result column="version_name" property="versionName" jdbcType="VARCHAR"/>
         <result column="color_name" property="colorName" jdbcType="VARCHAR"/>
     </resultMap>
-
-
+   <update id="status" parameterType="com.xm.entity.xmgoods">
+     update xm_goods set goods_status=1 where id=#{id}
+   </update>
+   <update id="xiajia" parameterType="com.xm.entity.xmgoods">
+     update xm_goods set goods_status=2 where id=#{id}
+   </update>
     <select id="select" resultMap="BaseResultMap">
         select * from xm_goods where id=#{id}
     </select>

@@ -57,6 +57,15 @@ public class GoodsController {
         redisUtil.del(RedisConstant.GOODS_LIST_KEY);
         return goodsService.select(id);
     }
-
+    @RequestMapping("status")
+    @ResponseBody
+    public xmgoods status(Integer id){
+        return goodsService.status(id);
+    }
+    @RequestMapping("xiajia")
+    @ResponseBody
+    public xmgoods xiajia(Integer id){
+        return goodsService.xiajia(id);
+    }
 
 }

@@ -12,6 +12,7 @@
     <artifactId>xm-provider</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>xm-provider</name>
+    <packaging>war</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,7 +20,11 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <!-- springboot整合shiro核心jar包 -->
         <dependency>
             <groupId>org.apache.shiro</groupId>

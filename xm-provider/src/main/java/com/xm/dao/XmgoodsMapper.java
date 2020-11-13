@@ -24,4 +24,8 @@ public interface XmgoodsMapper {
     xmgoods select(Integer id);
 
     List<xmgoods> selectqq(String[] oid);
+
+    xmgoods status(Integer id);
+
+    xmgoods xiajia(Integer id);
 }
