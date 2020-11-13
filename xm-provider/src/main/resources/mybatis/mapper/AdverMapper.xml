@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xm.dao.AdverMapper" >
+  <resultMap id="BaseResultMap" type="com.xm.entity.Adver" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="adver_title" property="adverTitle" jdbcType="VARCHAR" />
+    <result column="adver_lead" property="adverLead" jdbcType="VARCHAR" />
+    <result column="adver_create_date" property="adverCreateDate" jdbcType="DATE" />
+    <result column="adver_issue_name" property="adverIssueName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="adverSql">
+    <where>
+      <if test="adverTitle!=null and adverTitle!=''">
+        and adver_title like '%${adverTitle}%'
+      </if>
+    </where>
+  </sql>
+  <select id="findAdver" resultMap="BaseResultMap">
+    select * from xm_adver <include refid="adverSql"></include>
+  </select>
+  <insert id="addAdver" parameterType="com.xm.entity.Adver">
+    insert into xm_adver values(#{id},#{adverTitle},#{adverLead},#{adverCreateDate},#{adverIssueName})
+  </insert>
+  <delete id="deleteAdver">
+    delete from xm_adver where id=#{id}
+  </delete>
+  <select id="findIdAdver" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from xm_adver where id=#{id}
+  </select>
+  <update id="updateAdver" parameterType="com.xm.entity.Adver">
+    update xm_adver set adver_title=#{adverTitle},adver_lead=#{adverLead},adver_create_date=#{adverCreateDate},adver_issue_name=#{adverIssueName} where id=#{id}
+  </update>
+</mapper>

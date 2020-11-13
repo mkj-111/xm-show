@@ -55,4 +55,6 @@ public class SeckillGoodsController {
     public SeckillGoods updateSeckill(Integer id){
         return seckillGoodsService.updateSeckill(id);
     }
+
+    
 }

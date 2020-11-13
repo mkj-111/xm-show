@@ -67,6 +67,16 @@ public class jumpcontroller {
     public String second() {
         return "second";
     }
+
+    @RequestMapping("adver")
+    public String adver(){
+        return "yyb/adver";
+    }
+
+    @RequestMapping("demo")
+    public String demo(){
+        return "yyb/demo";
+    }
     /*于英彬*/
     //跳转产品管理页面
     @RequestMapping("goods")

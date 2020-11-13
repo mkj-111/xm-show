@@ -14,10 +14,8 @@
     <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
     <link rel="stylesheet" href="../js/uploadify/uploadify.css">
     <script src="../js/uploadify/jquery.uploadify.min.js"></script>
-
 </head>
 <body>
-
 <div id="u3832" class="ax_default" data-label="产品管理(商品管理)" style="left: 0px; width: 840px;">
     <div id="u3832_state0" class="panel_state" data-label="State1" style="width: 840px;">
         <div id="u3832_state0_content" class="panel_state_content" style="margin-left: 0px;">
@@ -51,12 +49,18 @@
                                         <td>商品名称</td>
                                         <td><input class="form-control" placeholder="商品名称" name="title" id="title"></td>
                                     </tr>
-                                    <!--<tr>
+                                    <tr>
                                         <td>商品图片</td>
                                         <td>
-                                            <input class="form-control" placeholder="商品图片" name="smallPic" id="smallPic">
+                                            <img id="add_img" width="100px" height="100px"/>
+                                            <!-- 文件域 -->
+                                            <input type="file" id="uploadImg"/>
+                                            <!-- 隐藏域：用于向后台传值，上传的文件新名称 -->
+                                            <input id="hideImg" name="smallPic" style="display:none"/><br>
+                                            <!-- 显示进度条的div -->
+                                            <div id="fileQueue"></div>
                                         </td>
-                                    </tr>-->
+                                    </tr>
                                     <tr>
                                         <td>原价格</td>
                                         <td><input class="form-control" placeholder="原价格" name="price" id="price"></td>
