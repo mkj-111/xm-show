@@ -8,7 +8,7 @@ public interface SeckillGoodsService {
 
     List<SeckillGoods> findSeckill();
 
-    void addSeckill(SeckillGoods seckill);
+    void addSeckill(SeckillGoods seckill,String imgname);
 
     void deleteSeckill(Integer id);
 

@@ -38,9 +38,9 @@ public class SeckillGoodsController {
 
     @RequestMapping("addSeckill")
     @ResponseBody
-    public void addSeckill(SeckillGoods seckill) {
+    public void addSeckill(SeckillGoods seckill,String imgname) {
         redisUtil.delAllKeys(RedisConstant.USER_LIST_KEY);
-        seckillGoodsService.addSeckill(seckill);
+        seckillGoodsService.addSeckill(seckill,imgname);
     }
 
     @RequestMapping("deleteSeckill")

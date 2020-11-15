@@ -20,7 +20,8 @@ public class SeckillGoodsImpl implements SeckillGoodsService {
     }
 
     @Override
-    public void addSeckill(SeckillGoods seckill) {
+    public void addSeckill(SeckillGoods seckill,String imgname) {
+          seckill.setSmallPic(imgname);
         if (seckill.getId() != null) {
             seckillGoodsMapper.updateGoods(seckill);
         } else {

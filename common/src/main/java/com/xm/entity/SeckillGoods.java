@@ -49,6 +49,16 @@ public class SeckillGoods {
 
     private Integer tixingshu;
 
+    private Integer miaoshatype;
+
+    public Integer getMiaoshatype() {
+        return miaoshatype;
+    }
+
+    public void setMiaoshatype(Integer miaoshatype) {
+        this.miaoshatype = miaoshatype;
+    }
+
     public Long getId() {
         return id;
     }

@@ -25,8 +25,8 @@ public class SeckillGoodsController {
     }
 
     @RequestMapping("addSeckill")
-    public void addSeckill(@RequestBody SeckillGoods seckill) {
-        seckillGoodsService.addSeckill(seckill);
+    public void addSeckill(@RequestBody SeckillGoods seckill,@RequestParam String imgname) {
+        seckillGoodsService.addSeckill(seckill,imgname);
     }
 
     @RequestMapping("deleteSeckill")

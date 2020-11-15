@@ -15,7 +15,7 @@ public interface SeckillGoodsService {
     public List<SeckillGoods> findSeckill();
 
     @RequestMapping("addSeckill")
-    public void addSeckill(@RequestBody SeckillGoods seckill);
+    public void addSeckill(@RequestBody SeckillGoods seckill ,@RequestParam String imgname);
 
     @RequestMapping("deleteSeckill")
     public void deleteSeckill(@RequestParam Integer id);
