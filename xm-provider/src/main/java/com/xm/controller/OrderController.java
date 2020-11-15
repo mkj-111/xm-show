@@ -47,7 +47,10 @@ public class OrderController {
         orederService.exportBank(response);
     }
 
-
+    @RequestMapping("zhifu")
+    public void zhifu(@RequestParam Integer id){
+        orederService.zhifu(id);
+    }
 
 
 }

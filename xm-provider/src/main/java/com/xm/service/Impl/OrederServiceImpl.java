@@ -29,7 +29,12 @@ public class OrederServiceImpl implements OrederService {
         return xmorderMapper.find();
     }
 
-   @Override
+    @Override
+    public void zhifu(Integer id) {
+        xmorderMapper.zhifu(id);
+    }
+
+    @Override
     public void exportBank(HttpServletResponse response) {
         List<xmorder> list = xmorderMapper.finddoctorBean();
         for (xmorder sys : list) {

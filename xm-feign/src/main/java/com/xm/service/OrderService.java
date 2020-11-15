@@ -26,7 +26,8 @@ public interface OrderService {
     @RequestMapping("selectq")
     public Order select(@RequestParam Integer id);
 
-
+    @RequestMapping("zhifu")
+    public void zhifu(@RequestParam Integer id);
 
     //导出
     @RequestMapping("exportBank")

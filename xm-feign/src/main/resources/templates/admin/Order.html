@@ -106,6 +106,10 @@
                     formatter: function (value, rows, index) {
                         var str = "";
                         str += "<a href='javascript:deletePatientById(" + rows.id + ")'>删除&nbsp;&nbsp;</a>";
+                        if(rows.orderstatus==1){
+                            str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' onclick='javascript:zhifu(" + rows.id + ")'>审核</button>";
+                        }
+
                         return str;
                     }
                 },
@@ -115,7 +119,16 @@
             pageList: [10, 20, 30],
         });
     }
-
+    function zhifu(id){
+        $.ajax({
+            url:"/order/zhifu",
+            data:{id:id},
+            type:"post",
+            success:function(){
+                $("#myTable").bootstrapTable("refresh");
+            }
+        })
+    }
     function deletePatientById(id) {
         $.ajax({
             url: "/order/delete",

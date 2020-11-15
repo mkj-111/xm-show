@@ -23,4 +23,6 @@ public interface OrederService {
     Order select(Integer id);
 
     List<Order> find();
+
+    void zhifu(Integer id);
 }
