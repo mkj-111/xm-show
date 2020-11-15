@@ -21,8 +21,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public xmgoods status(Integer id) {
-        return xmgoodsMapper.status(id);
+    public void status(Integer id) {
+         xmgoodsMapper.status(id);
     }
 
     @Override

@@ -35,4 +35,5 @@ public class RedisConfiguration {
         return template;
     }
 
+
 }
