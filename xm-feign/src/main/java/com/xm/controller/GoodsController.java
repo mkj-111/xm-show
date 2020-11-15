@@ -33,7 +33,7 @@ public class GoodsController {
             redisUtil.set(RedisConstant.GOODS_LIST_KEY, goodsList);
             redisUtil.expire(RedisConstant.GOODS_LIST_KEY, 60);
         }
-        return goodsService.find(goods);
+        return goodsList;
     }
 
     @RequestMapping("delete")

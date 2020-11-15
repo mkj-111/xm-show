@@ -19,13 +19,21 @@
         <result column="stock_count" property="stockCount" jdbcType="INTEGER"/>
         <result column="introduction" property="introduction" jdbcType="VARCHAR"/>
         <result column="tixingshu" property="tixingshu" jdbcType="INTEGER"/>
+        <result column="miaoshaType" property="miaoshatype" jdbcType="INTEGER" />
     </resultMap>
+    <sql id="seckillSql">
+        <where>
+            <if test="title !=null and title !=''">
+                and title like '%${title}%'
+            </if>
+        </where>
+    </sql>
     <select id="findSeckill" resultMap="BaseResultMap">
-        select * from xm_seckill_goods
+        select * from xm_seckill_goods <include refid="seckillSql"></include>
     </select>
     <insert id="addSeckill" parameterType="com.xm.entity.SeckillGoods">
         insert into xm_seckill_goods
-        values(#{id},null,null,#{title},null,#{price},#{costPrice},null,#{createTime},#{checkTime},#{status},#{startTime},#{endTime},#{num},#{stockCount},#{introduction},#{tixingshu})
+        values(#{id},null,null,#{title},null,#{price},#{costPrice},null,#{createTime},#{checkTime},#{status},#{startTime},#{endTime},#{num},#{stockCount},#{introduction},#{tixingshu},#{miaoshatype})
     </insert>
     <delete id="deleteSeckill">
         delete from xm_seckill_goods where id=#{id}

@@ -12,7 +12,7 @@ import java.util.List;
 public interface SeckillGoodsService {
 
     @RequestMapping("findSeckill")
-    public List<SeckillGoods> findSeckill();
+    public List<SeckillGoods> findSeckill(@RequestBody SeckillGoods seckill);
 
     @RequestMapping("addSeckill")
     public void addSeckill(@RequestBody SeckillGoods seckill);

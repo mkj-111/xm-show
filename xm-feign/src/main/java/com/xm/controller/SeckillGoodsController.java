@@ -26,27 +26,19 @@ public class SeckillGoodsController {
 
     @RequestMapping("findSeckill")
     @ResponseBody
-    public List<SeckillGoods> findSeckill() {
-        List<SeckillGoods> seckillList = (List<SeckillGoods>) redisUtil.get(RedisConstant.USER_LIST_KEY);
-        if (seckillList == null || seckillList.isEmpty()) {
-            seckillList = seckillGoodsService.findSeckill();
-            redisUtil.set(RedisConstant.USER_LIST_KEY, seckillList);
-            redisUtil.expire(RedisConstant.USER_LIST_KEY, 60);
-        }
-        return seckillList;
+    public List<SeckillGoods> findSeckill(SeckillGoods seckill) {
+        return seckillGoodsService.findSeckill(seckill);
     }
 
     @RequestMapping("addSeckill")
     @ResponseBody
     public void addSeckill(SeckillGoods seckill) {
-        redisUtil.delAllKeys(RedisConstant.USER_LIST_KEY);
         seckillGoodsService.addSeckill(seckill);
     }
 
     @RequestMapping("deleteSeckill")
     @ResponseBody
     public void deleteSeckill(Integer id) {
-        redisUtil.del(RedisConstant.USER_LIST_KEY);
         seckillGoodsService.deleteSeckill(id);
     }
 
