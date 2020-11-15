@@ -39,8 +39,8 @@ public class GoodsController {
     }
 
     @RequestMapping("status")
-    public xmgoods status(@RequestParam Integer id){
-        return goodsService.status(id);
+    public void status(@RequestParam Integer id){
+         goodsService.status(id);
     }
     @RequestMapping("xiajia")
     public xmgoods xiajia(@RequestParam Integer id){

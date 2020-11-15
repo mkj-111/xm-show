@@ -1,6 +1,7 @@
 package com.xm.controller;
 
 import com.xm.config.RedisConstant;
+import com.xm.entity.Order;
 import com.xm.entity.xmorder;
 import com.xm.service.OrderService;
 import com.xm.utils.RedisUtil;
@@ -20,41 +21,28 @@ import java.util.List;
 public class OrderController {
     @Resource
     private OrderService orderService;
-    @Resource
-    private RedisTemplate redisTemplate;
-    @Resource
-    private RedisUtil redisUtil;
 
     @RequestMapping("find")
     @ResponseBody
-    public List<xmorder> find(xmorder order) {
-        List<xmorder> orderList = (List<xmorder>) redisUtil.get(RedisConstant.ORDER_LIST_KEY);
-        if (orderList == null || orderList.isEmpty()) {
-            orderList = orderService.find(order);
-            redisUtil.set(RedisConstant.ORDER_LIST_KEY, orderList);
-            redisUtil.expire(RedisConstant.ORDER_LIST_KEY, 60);
-        }
-        return orderList;
+    public List<Order> find() {
+        return orderService.find();
     }
 
     @RequestMapping("delete")
     @ResponseBody
     public void delete(Integer id) {
-        redisUtil.del(RedisConstant.ORDER_LIST_KEY);
         orderService.delete(id);
     }
 
     @RequestMapping("add")
     @ResponseBody
-    public void insert(xmorder po) {
-        redisUtil.delAllKeys(RedisConstant.ORDER_LIST_KEY);
+    public void insert(Order po) {
         orderService.add(po);
     }
 
     @RequestMapping("huixian")
     @ResponseBody
-    public xmorder selectId(Integer id) {
-        redisUtil.del(RedisConstant.ORDER_LIST_KEY);
+    public Order selectId(Integer id) {
         return orderService.select(id);
     }
 
