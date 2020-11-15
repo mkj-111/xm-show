@@ -27,8 +27,13 @@ public class GoodsController {
     @RequestMapping("find")
     @ResponseBody
     public List<xmgoods> find(xmgoods goods) {
-
-        return goodsService.find(goods);
+        List<xmgoods> goodsList = (List<xmgoods>) redisUtil.get(RedisConstant.GOODS_LIST_KEY);
+        if (goodsList == null || goodsList.isEmpty()) {
+            goodsList = goodsService.find(goods);
+            redisUtil.set(RedisConstant.GOODS_LIST_KEY, goodsList);
+            redisUtil.expire(RedisConstant.GOODS_LIST_KEY, 60);
+        }
+        return goodsList;
     }
 
     @RequestMapping("delete")
