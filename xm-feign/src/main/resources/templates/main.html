@@ -4,7 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <link rel="icon" href="https://jscdn.com.cn/highcharts/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <!--Highcharts-->
+    <script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/themes/dark-unica.js"></script>
+    <!-- bootstrap -->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/jquery-1.9.1.min.js"></script>
     <script src="../js/bootstrap3/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../js/bootstrap3/css/bootstrap.css"/>
@@ -31,7 +41,7 @@
                 </ul>
                 <!-- 选项卡下内容 -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="home">
+                    <div id="container" style="min-width:400px;height:400px"></div>
                     </div>
                 </div>
             </div>
@@ -42,6 +52,7 @@
 
     $(function () {
         initTree();
+        highcharts();
     });
 
     function initTree() {
@@ -63,6 +74,66 @@
                 })
             }
         });
+    }
+    //报表查（赋值）
+    function highcharts() {
+        $.ajax({
+            url: '../order/highcharts',
+            type: "post",
+            success: function (data) {
+                var chart = Highcharts.chart('container', {
+                    chart: {
+                        type: 'areaspline'
+                    },
+
+                    title: {
+                        text: '最近七天的订单情况'
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'left',
+                        verticalAlign: 'top',
+                        x: 150,
+                        y: 100,
+                        floating: true,
+                        borderWidth: 1,
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                    },
+
+                    xAxis: {
+                        categories: data.dat,
+                        plotBands: [{ // 标识出周末
+                            from: 4.5,
+                            to: 6.5,
+                            color: 'rgba(68, 170, 213, .2)'
+                        }]
+                    },
+
+                    yAxis: {
+                        title: {
+                            text: '价钱 / 数量'
+                        }
+                    },
+                    tooltip: {
+                        shared: true,
+                        valueSuffix: ' 单位'
+                    },
+                    plotOptions: {
+                        areaspline: {
+                            fillOpacity: 0.5
+                        }
+                    },
+                    series: [{
+                        name: '金额',
+                        data: data.cou
+                    }, {
+                        name: '总数',
+                        data: data.sum
+                    }]
+                });
+
+            }
+        })
     }
 
 </script>
