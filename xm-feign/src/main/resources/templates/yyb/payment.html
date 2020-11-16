@@ -12,7 +12,6 @@
     <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
-
 </head>
 <body>
 <div id="u3832" class="ax_default" data-label="产品管理(商品管理)" style="left: 0px; width: 840px;">
@@ -34,19 +33,16 @@
     $(function () {
         select();
     })
-
     function getSearch() {
         alert($("#user").val());
         $("#member_table").bootstrapTable("refresh", {
             query: {
                 username: $("#user").val(),
-
                 staDate: $("#staDate").val(),
                 endDate: $("#endDate").val(),
             }
         })
     }
-
     function select() {
         $("#payment_table").bootstrapTable({
             url: "/findpay",
@@ -64,7 +60,6 @@
             PageList: [2, 4, 6, 8, 10]
         });
     }
-
     function getDelete(id) {
         alert(id);
         $.ajax({

@@ -67,14 +67,9 @@
             },
         });
     }
-
-
     $(function () {
         initTable()
     })
-
-
-
     function initTable() {
         $("#myTable").bootstrapTable({
             url: "/order/find",
@@ -82,7 +77,9 @@
                 {checkbox: true},
                 {field: 'id', title: 'ID', align: 'center'},
                 {field: 'ordernum', title: '订单编号', align: 'center'},
-                {field: 'ordersumprice', title: "订单价格", align: 'center'},
+                {field: 'ordersumprice', title: "订单价格", align: 'center',formatter:function (value,row,index){
+                        return value+"元";
+                }},
                 {field: 'orderstatus', title: '订单状态', align: 'center',formatter: function (value, rows, index) {
                         var str = "";
                         if (value == 1) {
@@ -101,7 +98,9 @@
                 {field: 'createtime', title: '具 体 时 间', align: 'center'},
                 {field: 'paytype', title: '支付方式', align: 'center'},
                 {field: 'ordergoodsname', title: '商品名称', align: 'center'},
-                {field: 'goodsnum', title: '商品数量', align: 'center'},
+                {field: 'goodsnum', title: '商品数量', align: 'center',formatter:function (value,row,index){
+                        return value+"个";
+                }},
                 {field: 'tool', title: '操 ~ 作', align: 'center', width: 150,
                     formatter: function (value, rows, index) {
                         var str = "";
@@ -148,7 +147,6 @@
 
         })
     }
-
     function add() {
         $.ajax({
             url: "/order/add",
@@ -157,11 +155,8 @@
             success: function () {
                 alert("成功")
                 $("#myTable").bootstrapTable("refresh");
-
             }
         })
     }
-
-
 </script>
 </html>
