@@ -13,12 +13,24 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>xm-feign</name>
     <description>Demo project for Spring Boot</description>
+<<<<<<< HEAD
 
+=======
+>>>>>>> d2d42acab090974066262987871805bc4d7b7205
+>>>>>>> 3c3c2deacbf78be5c31e74f8b18a4e67bf6f77c3
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+<<<<<<< HEAD
+=======
+>>>>>>> d2d42acab090974066262987871805bc4d7b7205
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <!-- springboot整合shiro核心jar包 -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -35,6 +47,34 @@
             <artifactId>shiro-ehcache</artifactId>
             <version>1.2.2</version>
         </dependency>
+<<<<<<< HEAD
+=======
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+>>>>>>> 3c3c2deacbf78be5c31e74f8b18a4e67bf6f77c3
+        <!-- springboot整合shiro核心jar包 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>thymeleaf-extras-shiro</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+<<<<<<< HEAD
+=======
+>>>>>>> d2d42acab090974066262987871805bc4d7b7205
+>>>>>>> 3c3c2deacbf78be5c31e74f8b18a4e67bf6f77c3
 
         <dependency>
             <groupId>com.xm</groupId>
@@ -50,6 +90,22 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+        </dependency>
+=======
+>>>>>>> d2d42acab090974066262987871805bc4d7b7205
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -61,12 +117,38 @@
                 </exclusion>
             </exclusions>
         </dependency>
+<<<<<<< HEAD
+    </dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+=======
+>>>>>>> 3c3c2deacbf78be5c31e74f8b18a4e67bf6f77c3
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+=======
+>>>>>>> 3c3c2deacbf78be5c31e74f8b18a4e67bf6f77c3
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -75,5 +157,9 @@
             </plugin>
         </plugins>
     </build>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3c3c2deacbf78be5c31e74f8b18a4e67bf6f77c3
 </project>
+>>>>>>> d2d42acab090974066262987871805bc4d7b7205

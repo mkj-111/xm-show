@@ -1,5 +1,6 @@
 package com.xm.service;
 
+import com.xm.entity.Order;
 import com.xm.entity.xmorder;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,18 +16,18 @@ import java.util.List;
 @FeignClient(value = "xmprovider")
 public interface OrderService {
     @RequestMapping("findq")
-    public List<xmorder> find(@RequestBody xmorder order);
+    public List<Order> find();
 
     @RequestMapping("deleteq")
     public void delete(@RequestParam Integer id);
-
-
     @RequestMapping("addq")
-    public void add(@RequestBody xmorder po);
-
+    public void add(@RequestBody Order po);
 
     @RequestMapping("selectq")
-    public xmorder select(@RequestParam Integer id);
+    public Order select(@RequestParam Integer id);
+
+    @RequestMapping("zhifu")
+    public void zhifu(@RequestParam Integer id);
 
     //导出
     @RequestMapping("exportBank")

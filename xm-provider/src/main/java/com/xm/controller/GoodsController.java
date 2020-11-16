@@ -38,4 +38,13 @@ public class GoodsController {
         return goodsService.select(id);
     }
 
+    @RequestMapping("status")
+    public void status(@RequestParam Integer id){
+         goodsService.status(id);
+    }
+    @RequestMapping("xiajia")
+    public void xiajia(@RequestParam Integer id){
+         goodsService.xiajia(id);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.xm.controller;
 
+import com.xm.entity.Order;
 import com.xm.entity.xmorder;
 import com.xm.service.OrederService;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,8 @@ public class OrderController {
     private OrederService orederService;
 
     @RequestMapping("findq")
-    public List<xmorder> find(@RequestBody xmorder order) {
-        return orederService.find(order);
+    public List<Order> find() {
+        return orederService.find();
     }
 
     @RequestMapping("deleteq")
@@ -28,13 +29,13 @@ public class OrderController {
     }
 
     @RequestMapping("addq")
-    public void add(@RequestBody xmorder po) {
+    public void add(@RequestBody Order po) {
         orederService.add(po);
 
     }
 
     @RequestMapping("selectq")
-    public xmorder select(@RequestParam Integer id) {
+    public Order select(@RequestParam Integer id) {
 
         return orederService.select(id);
     }
@@ -46,32 +47,9 @@ public class OrderController {
         orederService.exportBank(response);
     }
 
-    /**
-     * 导入excel
-     */
-    @RequestMapping("/importstudent")
-
-    public String excelImport(@RequestParam MultipartFile[] file, HttpSession session) {
-
-        //String fileName = file.getOriginalFilename();
-
-        int result = 0;
-
-        try {
-            //System.out.println(file.length);
-            result = orederService.addStudent(file[0]);
-            //System.out.println("aa");
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
-
-        if (result > 0) {
-            return "{\"result\":\"excel文件数据导入成功！\"}";
-        } else {
-            return "{\"result\":\"excel文件数据导入失败！\"}";
-        }
-
+    @RequestMapping("zhifu")
+    public void zhifu(@RequestParam Integer id){
+        orederService.zhifu(id);
     }
 
 

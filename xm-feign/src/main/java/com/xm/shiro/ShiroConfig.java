@@ -31,7 +31,7 @@ public class ShiroConfig {
         //- anon:所有url都都可以匿名访问
         //- authc: 需要认证才能进行访问
         //- logout :注销
-        Map<String, String> map = new LinkedHashMap<>();
+        Map<String, String> map = new LinkedHashMap<String ,String>();
         map.put("/logout", "logout");//注销, 路径和value中的logout一定要一致，这是shiro提供的路径地址和value值
         map.put("/page/toLogin", "anon");
         map.put("/user/login", "anon");

@@ -21,7 +21,7 @@ public class RedisConfiguration {
     @Bean
     public RedisTemplate<Object, Object> redisTemplate(
             RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<Object, Object> template = new RedisTemplate<>();
+        RedisTemplate<Object, Object> template = new RedisTemplate<Object, Object>();
         //使用fastjson序列化
         FastJsonRedisSerializer fastJsonRedisSerializer = new FastJsonRedisSerializer(Object.class);
         // value值的序列化采用fastJsonRedisSerializer
@@ -34,5 +34,6 @@ public class RedisConfiguration {
         ParserConfig.getGlobalInstance().addAccept("com.jk.entity"); // 指定自己的实体类包
         return template;
     }
+
 
 }

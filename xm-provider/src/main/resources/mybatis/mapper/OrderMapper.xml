@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xm.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.xm.entity.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="orderNum" property="ordernum" jdbcType="VARCHAR" />
+    <result column="orderSumPrice" property="ordersumprice" jdbcType="DECIMAL" />
+    <result column="orderStatus" property="orderstatus" jdbcType="INTEGER" />
+    <result column="receivingAddress" property="receivingaddress" jdbcType="VARCHAR" />
+    <result column="receivingTelephone" property="receivingtelephone" jdbcType="VARCHAR" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="VARCHAR" />
+    <result column="serialNumber" property="serialnumber" jdbcType="VARCHAR" />
+    <result column="payType" property="paytype" jdbcType="VARCHAR" />
+    <result column="paymentTime" property="paymenttime" jdbcType="VARCHAR" />
+    <result column="ordergoodsName" property="ordergoodsname" jdbcType="VARCHAR" />
+    <result column="goodsId" property="goodsid" jdbcType="VARCHAR" />
+    <result column="goodsNum" property="goodsnum" jdbcType="VARCHAR" />
+  </resultMap>
+  <update id="zhifu" parameterType="com.xm.entity.Order">
+     update xm_order_goods set orderStatus=2 where id=#{id}
+  </update>
+  <select id="find" resultMap="BaseResultMap">
+     select * from xm_order_goods
+  </select>
+  <sql id="Base_Column_List" >
+    id, userId, orderNum, orderSumPrice, orderStatus, receivingAddress, receivingTelephone, 
+    consignee, createTime, serialNumber, payType, paymentTime, ordergoodsName, goodsId, 
+    goodsNum
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from xm_order_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from xm_order_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xm.entity.Order" >
+    insert into xm_order_goods (id, userId, orderNum, 
+      orderSumPrice, orderStatus, receivingAddress, 
+      receivingTelephone, consignee, createTime, 
+      serialNumber, payType, paymentTime, 
+      ordergoodsName, goodsId, goodsNum
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{ordernum,jdbcType=VARCHAR}, 
+      #{ordersumprice,jdbcType=DECIMAL}, #{orderstatus,jdbcType=INTEGER}, #{receivingaddress,jdbcType=VARCHAR}, 
+      #{receivingtelephone,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+      #{serialnumber,jdbcType=VARCHAR}, #{paytype,jdbcType=VARCHAR}, #{paymenttime,jdbcType=VARCHAR}, 
+      #{ordergoodsname,jdbcType=VARCHAR}, #{goodsid,jdbcType=VARCHAR}, #{goodsnum,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xm.entity.Order" >
+    insert into xm_order_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="ordernum != null" >
+        orderNum,
+      </if>
+      <if test="ordersumprice != null" >
+        orderSumPrice,
+      </if>
+      <if test="orderstatus != null" >
+        orderStatus,
+      </if>
+      <if test="receivingaddress != null" >
+        receivingAddress,
+      </if>
+      <if test="receivingtelephone != null" >
+        receivingTelephone,
+      </if>
+      <if test="consignee != null" >
+        consignee,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="serialnumber != null" >
+        serialNumber,
+      </if>
+      <if test="paytype != null" >
+        payType,
+      </if>
+      <if test="paymenttime != null" >
+        paymentTime,
+      </if>
+      <if test="ordergoodsname != null" >
+        ordergoodsName,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="goodsnum != null" >
+        goodsNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="ordernum != null" >
+        #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersumprice != null" >
+        #{ordersumprice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderstatus != null" >
+        #{orderstatus,jdbcType=INTEGER},
+      </if>
+      <if test="receivingaddress != null" >
+        #{receivingaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receivingtelephone != null" >
+        #{receivingtelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="serialnumber != null" >
+        #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="paymenttime != null" >
+        #{paymenttime,jdbcType=VARCHAR},
+      </if>
+      <if test="ordergoodsname != null" >
+        #{ordergoodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsnum != null" >
+        #{goodsnum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xm.entity.Order" >
+    update xm_order_goods
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="ordernum != null" >
+        orderNum = #{ordernum,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersumprice != null" >
+        orderSumPrice = #{ordersumprice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderstatus != null" >
+        orderStatus = #{orderstatus,jdbcType=INTEGER},
+      </if>
+      <if test="receivingaddress != null" >
+        receivingAddress = #{receivingaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receivingtelephone != null" >
+        receivingTelephone = #{receivingtelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="serialnumber != null" >
+        serialNumber = #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        payType = #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="paymenttime != null" >
+        paymentTime = #{paymenttime,jdbcType=VARCHAR},
+      </if>
+      <if test="ordergoodsname != null" >
+        ordergoodsName = #{ordergoodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsid != null" >
+        goodsId = #{goodsid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsnum != null" >
+        goodsNum = #{goodsnum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xm.entity.Order" >
+    update xm_order_goods
+    set userId = #{userid,jdbcType=INTEGER},
+      orderNum = #{ordernum,jdbcType=VARCHAR},
+      orderSumPrice = #{ordersumprice,jdbcType=DECIMAL},
+      orderStatus = #{orderstatus,jdbcType=INTEGER},
+      receivingAddress = #{receivingaddress,jdbcType=VARCHAR},
+      receivingTelephone = #{receivingtelephone,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=VARCHAR},
+      serialNumber = #{serialnumber,jdbcType=VARCHAR},
+      payType = #{paytype,jdbcType=VARCHAR},
+      paymentTime = #{paymenttime,jdbcType=VARCHAR},
+      ordergoodsName = #{ordergoodsname,jdbcType=VARCHAR},
+      goodsId = #{goodsid,jdbcType=VARCHAR},
+      goodsNum = #{goodsnum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

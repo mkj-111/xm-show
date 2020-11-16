@@ -1,11 +1,13 @@
 package com.xm.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Data
 public class SeckillGoods {
     private Long id;
 
@@ -22,6 +24,8 @@ public class SeckillGoods {
     private BigDecimal costPrice;
 
     private String sellerId;
+
+    private Integer miaoshatype;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -48,16 +52,6 @@ public class SeckillGoods {
     private String introduction;
 
     private Integer tixingshu;
-
-    private Integer miaoshatype;
-
-    public Integer getMiaoshatype() {
-        return miaoshatype;
-    }
-
-    public void setMiaoshatype(Integer miaoshatype) {
-        this.miaoshatype = miaoshatype;
-    }
 
     public Long getId() {
         return id;

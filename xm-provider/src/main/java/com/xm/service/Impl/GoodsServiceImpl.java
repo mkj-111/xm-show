@@ -21,6 +21,16 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public void status(Integer id) {
+         xmgoodsMapper.status(id);
+    }
+
+    @Override
+    public void xiajia(Integer id) {
+         xmgoodsMapper.xiajia(id);
+    }
+
+    @Override
     public void delete(Integer id) {
         xmgoodsMapper.deleteByPrimaryKey(id);
     }

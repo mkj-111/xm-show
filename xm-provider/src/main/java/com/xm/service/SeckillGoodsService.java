@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SeckillGoodsService {
 
-    List<SeckillGoods> findSeckill();
+    List<SeckillGoods> findSeckill(SeckillGoods seckill);
 
     void addSeckill(SeckillGoods seckill,String imgname);
 

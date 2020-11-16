@@ -187,7 +187,6 @@
             }
         })
     }
-
     function initTable() {
         $("#myTable").bootstrapTable({
             url: "/goods/find",
@@ -204,7 +203,6 @@
                         str3 = rows.goodsName;
                         str1 = rows.versionName;
                         str2 = rows.colorName;
-
                         str += str3 + str2 + str1;
                         return str;
                     }
@@ -245,6 +243,13 @@
                         str += "<a href='javascript:deletePatientById(" + rows.id + ")'>删除&nbsp;&nbsp;</a>";
                         str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' data-target='#editModal' onclick='javascript:xiugai(" + rows.id + ")'>修改</button>";
                         str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' data-target='#editModalq' onclick='javascript:pinglun(" + rows.id + ")'>评论</button>";
+
+                       if(rows.goodsStatus==2){
+                           str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' onclick='javascript:shou(" + rows.id + ")'>在售</button>";
+                       }
+                       if(rows.goodsStatus==1){
+                           str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' onclick='javascript:xiajia(" + rows.id + ")'>下架</button>";
+                       }
                         return str;
                     }
                 },
@@ -254,7 +259,6 @@
             pageList: [10, 20, 30],
         });
     }
-
     function pinglun(id) {
         $.ajax({
             url: "/goods/huixian",

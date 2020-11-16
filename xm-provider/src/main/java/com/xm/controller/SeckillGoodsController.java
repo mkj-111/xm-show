@@ -20,8 +20,8 @@ public class SeckillGoodsController {
 
 
     @RequestMapping("findSeckill")
-    public List<SeckillGoods> findSeckill() {
-        return seckillGoodsService.findSeckill();
+    public List<SeckillGoods> findSeckill(@RequestBody SeckillGoods seckill) {
+        return seckillGoodsService.findSeckill(seckill);
     }
 
     @RequestMapping("addSeckill")

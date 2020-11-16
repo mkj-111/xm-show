@@ -15,4 +15,7 @@ public interface GoodsService {
 
     List<xmgoods> find(xmgoods goods);
 
+    void status(Integer id);
+
+    void xiajia(Integer id);
 }
