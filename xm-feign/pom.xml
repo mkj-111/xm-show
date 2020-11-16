@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+=======
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+>>>>>>> fbe5408298820a40089cb8c19c9fb0ff6ae1367f
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -14,18 +18,46 @@
     <name>xm-feign</name>
     <description>Demo project for Spring Boot</description>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> d2d42acab090974066262987871805bc4d7b7205
 >>>>>>> 3c3c2deacbf78be5c31e74f8b18a4e67bf6f77c3
+=======
+>>>>>>> fbe5408298820a40089cb8c19c9fb0ff6ae1367f
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
+<<<<<<< HEAD
     <dependencies>
 <<<<<<< HEAD
 =======
 >>>>>>> d2d42acab090974066262987871805bc4d7b7205
+=======
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- springboot整合shiro核心jar包 -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.theborakompanioni</groupId>
+			<artifactId>thymeleaf-extras-shiro</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+>>>>>>> fbe5408298820a40089cb8c19c9fb0ff6ae1367f
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -47,8 +79,6 @@
             <artifactId>shiro-ehcache</artifactId>
             <version>1.2.2</version>
         </dependency>
-<<<<<<< HEAD
-=======
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -71,11 +101,14 @@
             <artifactId>shiro-ehcache</artifactId>
             <version>1.2.2</version>
         </dependency>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> d2d42acab090974066262987871805bc4d7b7205
 >>>>>>> 3c3c2deacbf78be5c31e74f8b18a4e67bf6f77c3
 
+=======
+>>>>>>> fbe5408298820a40089cb8c19c9fb0ff6ae1367f
         <dependency>
             <groupId>com.xm</groupId>
             <artifactId>common</artifactId>
@@ -89,10 +122,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> fbe5408298820a40089cb8c19c9fb0ff6ae1367f
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -104,8 +140,6 @@
 				</exclusion>
 			</exclusions>
         </dependency>
-=======
->>>>>>> d2d42acab090974066262987871805bc4d7b7205
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -117,7 +151,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-<<<<<<< HEAD
     </dependencies>
 	<build>
 		<plugins>
@@ -128,6 +161,7 @@
 		</plugins>
 	</build>
 </project>
+<<<<<<< HEAD
 =======
 >>>>>>> 3c3c2deacbf78be5c31e74f8b18a4e67bf6f77c3
         <dependency>
@@ -163,3 +197,5 @@
 >>>>>>> 3c3c2deacbf78be5c31e74f8b18a4e67bf6f77c3
 </project>
 >>>>>>> d2d42acab090974066262987871805bc4d7b7205
+=======
+>>>>>>> fbe5408298820a40089cb8c19c9fb0ff6ae1367f
