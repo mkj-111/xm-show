@@ -64,8 +64,8 @@ public class GoodsController {
 
     @RequestMapping("xiajia")
     @ResponseBody
-    public xmgoods xiajia(Integer id){
-        return goodsService.xiajia(id);
+    public void xiajia(Integer id){
+         goodsService.xiajia(id);
     }
 
 }

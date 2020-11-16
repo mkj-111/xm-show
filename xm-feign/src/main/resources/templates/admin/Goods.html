@@ -251,10 +251,10 @@
                         str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' data-target='#editModalq' onclick='javascript:pinglun(" + rows.id + ")'>评论</button>";
 
                        if(rows.goodsStatus==2){
-                           str += "<button type='button'  onclick='javascript:shou(" + rows.id + ")'>在售</button>";
+                           str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' onclick='javascript:shou(" + rows.id + ")'>在售</button>";
                        }
                        if(rows.goodsStatus==1){
-                           str += "<button type='button'  onclick='javascript:xiajia(" + rows.id + ")'>下架</button>";
+                           str += "<button type='button' class='btn bg-olive btn-xs' data-toggle='modal' onclick='javascript:xiajia(" + rows.id + ")'>下架</button>";
                        }
                         return str;
                     }

@@ -24,4 +24,6 @@ public interface OrderMapper {
     List<xmorder> finddoctorBean();
 
     Order select(Integer id);
+
+    void zhifu(Integer id);
 }

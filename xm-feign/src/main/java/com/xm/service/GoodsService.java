@@ -28,5 +28,5 @@ public interface GoodsService {
     public void status(@RequestParam Integer id);
 
     @RequestMapping("xiajia")
-    public xmgoods xiajia(@RequestParam Integer id);
+    public void xiajia(@RequestParam Integer id);
 }

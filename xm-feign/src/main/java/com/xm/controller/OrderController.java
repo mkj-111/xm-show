@@ -8,6 +8,7 @@ import com.xm.utils.RedisUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -56,6 +57,11 @@ public class OrderController {
     @RequestMapping("importstudent")
     public String excelImport(MultipartFile[] file, HttpSession session) {
         return orderService.excelImport(file, session);
+    }
+    @RequestMapping("zhifu")
+    @ResponseBody
+    public void zhifu(Integer id){
+        orderService.zhifu(id);
     }
 
 }

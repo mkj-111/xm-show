@@ -17,5 +17,5 @@ public interface GoodsService {
 
     void status(Integer id);
 
-    xmgoods xiajia(Integer id);
+    void xiajia(Integer id);
 }

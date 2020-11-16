@@ -18,6 +18,9 @@
     <result column="goodsId" property="goodsid" jdbcType="VARCHAR" />
     <result column="goodsNum" property="goodsnum" jdbcType="VARCHAR" />
   </resultMap>
+  <update id="zhifu" parameterType="com.xm.entity.Order">
+     update xm_order_goods set orderStatus=2 where id=#{id}
+  </update>
   <select id="find" resultMap="BaseResultMap">
      select * from xm_order_goods
   </select>
